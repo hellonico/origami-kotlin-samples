@@ -15,7 +15,7 @@ for i in `find . -name "*.kt"` ; do
 
   # code
   echo '```java'
-  cat $i | grep -v import | grep -v package | grep -v "//" | grep -v -e '^$'
+  cat $i | grep -v import | grep -v package | grep -v "//" | grep -v -e '^$' | head -n2
   echo '```'
 
   # pictures in

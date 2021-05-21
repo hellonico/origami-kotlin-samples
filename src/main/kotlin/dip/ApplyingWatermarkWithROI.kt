@@ -1,15 +1,9 @@
 package dip
 
-import kotlin.Throws
-import java.io.IOException
-import kotlin.jvm.JvmStatic
-import origami.Origami
-import org.opencv.core.Mat
-import org.opencv.imgcodecs.Imgcodecs
-import org.opencv.core.Core
-import org.opencv.core.Core.*
+import org.opencv.core.Core.addWeighted
 import org.opencv.core.Rect
 import org.opencv.imgcodecs.Imgcodecs.*
+import origami.Origami
 
 fun main(args: Array<String>) {
     Origami.init()
