@@ -3,3 +3,4 @@
 build
 .gradle
 *.jpg
+*.xml
