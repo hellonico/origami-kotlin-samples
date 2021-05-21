@@ -1,6 +1,5 @@
 ## backgroundModel.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val foreground = Mat()
@@ -14,21 +13,18 @@ fun main(args: Array<String>) {
             foreground
         }
     ).run()
-
 }
+```
 
 ## hogPeopleDetection.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val HOG = HOGDescriptor()
     HOG.setSVMDetector(HOGDescriptor.getDefaultPeopleDetector())
-
     val foundLocations = MatOfRect()
     val foundWeights = MatOfDouble()
     val color = Scalar(255.0, 0.0, 0.0)
-
     Camera().device(0).filter(Filter() {
         HOG.detectMultiScale(
             it, foundLocations, foundWeights, 0.0, Size(8.0, 8.0), Size(32.0, 32.0),
@@ -37,7 +33,6 @@ fun main(args: Array<String>) {
         drawLocations(foundLocations, it, color)
     }).run()
 }
-
 private fun drawLocations(foundLocations: MatOfRect, it: Mat?, color: Scalar): Mat? {
     val rectangles = foundLocations.toList()
     for (i in rectangles.indices) {
@@ -52,10 +47,10 @@ private fun drawLocations(foundLocations: MatOfRect, it: Mat?, color: Scalar): M
     }
     return it
 }
+```
 
 ## ApplyingBoxFilter.kt
-
-
+```java
 fun createKernelOfSize(kernelSize: Int): Mat {
     val kernel = Mat.ones(kernelSize, kernelSize, CvType.CV_32F)
     for (i in 0 until kernel.rows()) {
@@ -69,59 +64,91 @@ fun createKernelOfSize(kernelSize: Int): Mat {
     }
     return kernel
 }
-
 fun main(args: Array<String>) {
     Origami.init()
-    val source = Imgcodecs.imread("data/dip/grayscale.jpg", Imgcodecs.IMREAD_GRAYSCALE)
+    val source = imread("data/dip/grayscale.jpg", IMREAD_GRAYSCALE)
     val destination = Mat(source.rows(), source.cols(), source.type())
     val kernel5 = createKernelOfSize(5)
-    Imgproc.filter2D(source, destination, -1, kernel5)
-    Imgcodecs.imwrite("boxfilterKernel5.jpg", destination)
+    filter2D(source, destination, -1, kernel5)
+    imwrite("out/boxfilterKernel5.jpg", destination)
     val kernel9 = createKernelOfSize(9)
-    Imgproc.filter2D(source, destination, -1, kernel9)
-    Imgcodecs.imwrite("boxfilterKernel9.jpg", destination)
+    filter2D(source, destination, -1, kernel9)
+    imwrite("out/boxfilterKernel9.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/grayscale.jpg" height=25% width=25%/>
+
+##### > boxfilterKernel5.jpg 
+<img src="out/boxfilterKernel5.jpg" height=25% width=25%/>
+
+##### > boxfilterKernel9.jpg 
+<img src="out/boxfilterKernel9.jpg" height=25% width=25%/>
+
 
 ## GaussianFilter.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val source = imread("data/dip/digital_image_processing.jpg", IMREAD_COLOR)
     val destination = Mat(source.rows(), source.cols(), source.type())
     GaussianBlur(source, destination, Size(11.0, 11.0), 0.0)
-    imwrite("gaussianblur1.jpg", destination)
+    imwrite("out/gaussianblur1.jpg", destination)
     GaussianBlur(source, destination, Size(45.0, 45.0), 0.0)
-    imwrite("gaussianblur45.jpg", destination)
+    imwrite("out/gaussianblur45.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
+
+##### > gaussianblur1.jpg 
+<img src="out/gaussianblur1.jpg" height=25% width=25%/>
+
+##### > gaussianblur45.jpg 
+<img src="out/gaussianblur45.jpg" height=25% width=25%/>
+
 
 ## ApplyingWatermarkWithROI.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
-    val source = Imgcodecs.imread("data/dip/digital_image_processing.jpg", Imgcodecs.IMREAD_COLOR)
-    val waterMark = Imgcodecs.imread("data/dip/watermark.jpg", Imgcodecs.IMREAD_COLOR)
+    val source = imread("data/dip/digital_image_processing.jpg", IMREAD_COLOR)
+    val waterMark = imread("data/dip/watermark.jpg", IMREAD_COLOR)
     val ROI = Rect(20, 20, waterMark.cols(), waterMark.rows())
-    Core.addWeighted(source.submat(ROI), 0.8, waterMark, 0.2, 1.0, source.submat(ROI))
-    Imgcodecs.imwrite("watermarkedROI.jpg", source)
+    addWeighted(source.submat(ROI), 0.8, waterMark, 0.2, 1.0, source.submat(ROI))
+    imwrite("out/watermarkedROI.jpg", source)
 }
+```
+##### < dip 
+<img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
+
+##### < dip 
+<img src="data/dip/watermark.jpg" height=25% width=25%/>
+
+##### > watermarkedROI.jpg 
+<img src="out/watermarkedROI.jpg" height=25% width=25%/>
+
 
 ## EnhanceImageSharpness.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val source = imread("data/dip/digital_image_processing.jpg", IMREAD_COLOR)
     val destination = Mat(source.rows(), source.cols(), source.type())
     GaussianBlur(source, destination, Size(1.0, 1.0), 10.0)
     addWeighted(source, 1.5, destination, -0.5, 0.0, destination)
-    imwrite("sharp.jpg", destination)
+    imwrite("out/sharp.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
+
+##### > sharp.jpg 
+<img src="out/sharp.jpg" height=25% width=25%/>
+
 
 ## Sobel.kt
-
-
+```java
 fun main(args: Array<String>) {
     init()
     val kernelSize = 3
@@ -132,37 +159,46 @@ fun main(args: Array<String>) {
             put(0, 0, -1.0)
             put(0, 1, 0.0)
             put(0, 2, 1.0)
-
             put(1, 0, - 2.0)
             put(1, 1, 0.0)
             put(1, 2, 2.0)
-
             put(2, 0, -1.0)
             put(2, 1, 0.0)
             put(2, 2, 1.0)
         }
     }
-
     filter2D(source, destination, -1, kernel)
-    imwrite("sobel.jpg", destination)
+    imwrite("out/sobel.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/grayscale.jpg" height=25% width=25%/>
+
+##### > sobel.jpg 
+<img src="out/sobel.jpg" height=25% width=25%/>
+
 
 ## EnhanceImageBrightness.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     var alpha = 2.0
     var beta = 50.0
-    val source = Imgcodecs.imread("data/dip/digital_image_processing.jpg", Imgcodecs.IMREAD_COLOR)
+    val source = imread("data/dip/digital_image_processing.jpg", IMREAD_COLOR)
     val destination = Mat(source.rows(), source.cols(), source.type())
     source.convertTo(destination, -1, alpha, beta)
-    Imgcodecs.imwrite("brightWithAlpha2Beta50.jpg", destination)
+    imwrite("out/brightWithAlpha2Beta50.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
+
+##### > brightWithAlpha2Beta50.jpg 
+<img src="out/brightWithAlpha2Beta50.jpg" height=25% width=25%/>
+
 
 ## Prewitt.kt
-
-
+```java
 fun main(args: Array<String>) {
     init()
     val kernelSize = 3
@@ -173,24 +209,27 @@ fun main(args: Array<String>) {
             put(0, 0, -1.0)
             put(0, 1, 0.0)
             put(0, 2, 1.0)
-
             put(1, 0, -1.0)
             put(1, 1, 0.0)
             put(1, 2, 1.0)
-
             put(2, 0, -1.0)
             put(2, 1, 0.0)
             put(2, 2, 1.0)
         }
     }
-
     filter2D(source, destination, -1, kernel)
-    imwrite("prewitt.jpg", destination)
+    imwrite("out/prewitt.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/grayscale.jpg" height=25% width=25%/>
+
+##### > prewitt.jpg 
+<img src="out/prewitt.jpg" height=25% width=25%/>
+
 
 ## ZoomingEffect.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val source = imread("data/dip/grayscale.jpg", IMREAD_GRAYSCALE)
@@ -204,12 +243,18 @@ fun main(args: Array<String>) {
         zoomingFactor.toDouble(),
         INTER_LINEAR
     )
-    imwrite("zoomed2.jpg", destination)
+    imwrite("out/zoomed2.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/grayscale.jpg" height=25% width=25%/>
+
+##### > zoomed2.jpg 
+<img src="out/zoomed2.jpg" height=25% width=25%/>
+
 
 ## Kirsch.kt
-
-
+```java
 fun main(args: Array<String>) {
     init()
     val kernelSize = 3
@@ -220,41 +265,47 @@ fun main(args: Array<String>) {
             put(0, 0, -3.0)
             put(0, 1, -3.0)
             put(0, 2, -3.0)
-
             put(1, 0, -3.0)
             put(1, 1, -3.0)
             put(1, 2, -3.0)
-
             put(2, 0, 5.0)
             put(2, 1, 5.0)
             put(2, 2, 5.0)
         }
     }
-
     filter2D(source, destination, -1, kernel)
-    imwrite("kirsch.jpg", destination)
+    imwrite("out/kirsch.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/grayscale.jpg" height=25% width=25%/>
+
+##### > kirsch.jpg 
+<img src="out/kirsch.jpg" height=25% width=25%/>
+
 
 ## Pixelize.kt
-
-
+```java
 /**
  */
 fun main(args: Array<String>) {
     init()
-
     val (source, temp,target) = listOf(imread("data/bear.png"), Mat(),Mat())
      val (w, h) = listOf(16.0, 16.0)
-
     resize(source, temp, Size(w, h), 1.0,1.0, INTER_LINEAR)
     resize(temp, target, source.size(), 1.0,1.0,INTER_NEAREST)
-
-    imwrite("pixelized.jpg", target)
+    imwrite("out/pixelized.jpg", target)
 }
+```
+##### < bear.png 
+<img src="data/bear.png" height=25% width=25%/>
+
+##### > pixelized.jpg 
+<img src="out/pixelized.jpg" height=25% width=25%/>
+
 
 ## ImageShapeConversions.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val input = File("data/dip/digital_image_processing.jpg")
@@ -271,53 +322,86 @@ fun main(args: Array<String>) {
     val outout = File("hsv.jpg")
     ImageIO.write(image1, "jpg", outout)
 }
+```
 
 ## BasicThresholding.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val source = imread("data/dip/digital_image_processing.jpg", IMREAD_COLOR)
     val destination = Mat(source.rows(), source.cols(), source.type())
     threshold(source, destination, 127.0, 255.0, THRESH_TOZERO)
-    imwrite("ThreshZero.jpg", destination)
+    imwrite("out/ThreshZero.jpg", destination)
     threshold(source, destination, 127.0, 255.0, THRESH_TOZERO_INV)
-    imwrite("ThreshZeroInv.jpg", destination)
+    imwrite("out/ThreshZeroInv.jpg", destination)
     threshold(source, destination, 127.0, 255.0, THRESH_BINARY)
-    imwrite("ThreshBinary.jpg", destination)
+    imwrite("out/ThreshBinary.jpg", destination)
     threshold(source, destination, 127.0, 255.0, THRESH_BINARY_INV)
-    imwrite("ThreshBinaryInv.jpg", destination)
+    imwrite("out/ThreshBinaryInv.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
+
+##### > ThreshZero.jpg 
+<img src="out/ThreshZero.jpg" height=25% width=25%/>
+
+##### > ThreshZeroInv.jpg 
+<img src="out/ThreshZeroInv.jpg" height=25% width=25%/>
+
+##### > ThreshBinary.jpg 
+<img src="out/ThreshBinary.jpg" height=25% width=25%/>
+
+##### > ThreshBinaryInv.jpg 
+<img src="out/ThreshBinaryInv.jpg" height=25% width=25%/>
+
 
 ## EnhanceImageContrast.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val source = imread("data/dip/grayscale.jpg", IMREAD_GRAYSCALE)
     val destination = Mat(source.rows(), source.cols(), source.type())
     equalizeHist(source, destination)
-    imwrite("contrast.jpg", destination)
+    imwrite("out/contrast.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/grayscale.jpg" height=25% width=25%/>
+
+##### > contrast.jpg 
+<img src="out/contrast.jpg" height=25% width=25%/>
+
 
 ## ImagePyramid.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     var source = imread("data/dip/digital_image_processing.jpg", IMREAD_COLOR)
     val destination1 = Mat(source.rows() * 2, source.cols() * 2, source.type())
     pyrUp(source, destination1, Size((source.cols() * 2).toDouble(), (source.rows() * 2).toDouble()))
-    imwrite("pyrUp.jpg", destination1)
+    imwrite("out/pyrUp.jpg", destination1)
     source = imread("data/dip/digital_image_processing.jpg", IMREAD_COLOR)
     val destination = Mat(source.rows() / 2, source.cols() / 2, source.type())
     pyrDown(source, destination, Size((source.cols() / 2).toDouble(), (source.rows() / 2).toDouble()))
-    imwrite("pyrDown.jpg", destination)
+    imwrite("out/pyrDown.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
+
+##### < dip 
+<img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
+
+##### > pyrUp.jpg 
+<img src="out/pyrUp.jpg" height=25% width=25%/>
+
+##### > pyrDown.jpg 
+<img src="out/pyrDown.jpg" height=25% width=25%/>
+
 
 ## ErodingDilating.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val source = imread("data/dip/digital_image_processing.jpg", IMREAD_COLOR)
@@ -335,13 +419,21 @@ fun main(args: Array<String>) {
         Size((2 * dilation_size + 1).toDouble(), (2 * dilation_size + 1).toDouble())
     )
     dilate(source, destination, element1)
-    imwrite("dilation.jpg", destination)
+    imwrite("out/dilation.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
+
+##### > erosion.jpg 
+<img src="erosion.jpg" height=25% width=25%/>
+
+##### > dilation.jpg 
+<img src="out/dilation.jpg" height=25% width=25%/>
+
 
 ## AddingBorder.kt
-
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val source = imread("data/dip/digital_image_processing.jpg")
@@ -351,16 +443,28 @@ fun main(args: Array<String>) {
     val left = source.cols() / 20
     val right = source.cols() / 20
     copyMakeBorder(source, destination, top, bottom, left, right, BORDER_WRAP)
-    imwrite("borderWrap.jpg", destination)
+    imwrite("out/borderWrap.jpg", destination)
     copyMakeBorder(source, destination, top, bottom, left, right, BORDER_REFLECT)
-    imwrite("borderReflect.jpg", destination)
+    imwrite("out/borderReflect.jpg", destination)
     copyMakeBorder(source, destination, top, bottom, left, right, BORDER_REPLICATE)
-    imwrite("borderReplicate.jpg", destination)
+    imwrite("out/borderReplicate.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
+
+##### > borderWrap.jpg 
+<img src="out/borderWrap.jpg" height=25% width=25%/>
+
+##### > borderReflect.jpg 
+<img src="out/borderReflect.jpg" height=25% width=25%/>
+
+##### > borderReplicate.jpg 
+<img src="out/borderReplicate.jpg" height=25% width=25%/>
+
 
 ## WeightedAverage.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val kernelSize = 9
@@ -381,12 +485,18 @@ fun main(args: Array<String>) {
         }
     }
     filter2D(source, destination, -1, kernel)
-    imwrite("weightedaveragefilter.jpg", destination)
+    imwrite("out/weightedaveragefilter.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/grayscale.jpg" height=25% width=25%/>
+
+##### > weightedaveragefilter.jpg 
+<img src="out/weightedaveragefilter.jpg" height=25% width=25%/>
+
 
 ## Convolution.kt
-
-
+```java
 fun main(args: Array<String>) {
     init()
     val kernelSize = 3
@@ -397,24 +507,27 @@ fun main(args: Array<String>) {
             put(0, 0, 0.0)
             put(0, 1, 0.0)
             put(0, 2, 0.0)
-
             put(1, 0, 0.0)
             put(1, 1, 1.0)
             put(1, 2, 0.0)
-
             put(2, 0, 0.0)
             put(2, 1, 0.0)
             put(2, 2, 0.0)
         }
     }
-
     filter2D(source, destination, -1, kernel)
-    imwrite("understand.jpg", destination)
+    imwrite("out/understand.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/grayscale.jpg" height=25% width=25%/>
+
+##### > understand.jpg 
+<img src="out/understand.jpg" height=25% width=25%/>
+
 
 ## Laplacian.kt
-
-
+```java
 fun main(args: Array<String>) {
     init()
     val kernelSize = 3
@@ -425,35 +538,44 @@ fun main(args: Array<String>) {
             put(0, 0, 0.0)
             put(0, 1, -1.0)
             put(0, 2, 0.0)
-
             put(1, 0, - 1.0)
             put(1, 1, 4.0)
             put(1, 2, -1.0)
-
             put(2, 0, 0.0)
             put(2, 1, -1.0)
             put(2, 2, 0.0)
         }
     }
-
     filter2D(source, destination, -1, kernel)
-    imwrite("laplacian.jpg", destination)
+    imwrite("out/laplacian.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/grayscale.jpg" height=25% width=25%/>
+
+##### > laplacian.jpg 
+<img src="out/laplacian.jpg" height=25% width=25%/>
+
 
 ## ColorSpaceConversion.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
-    val mat = Imgcodecs.imread("data/dip/digital_image_processing.jpg")
+    val mat = imread("data/dip/digital_image_processing.jpg")
     val mat1 = Mat(mat.width(), mat.height(), CvType.CV_8UC3)
-    Imgproc.cvtColor(mat, mat1, Imgproc.COLOR_RGB2HSV)
-    Imgcodecs.imwrite("hsv.jpg", mat1)
+    cvtColor(mat, mat1, COLOR_RGB2HSV)
+    imwrite("out/hsv.jpg", mat1)
 }
+```
+##### < dip 
+<img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
+
+##### > hsv.jpg 
+<img src="out/hsv.jpg" height=25% width=25%/>
+
 
 ## Robinson.kt
-
-
+```java
 fun main(args: Array<String>) {
     init()
     val kernelSize = 3
@@ -464,25 +586,27 @@ fun main(args: Array<String>) {
             put(0, 0, -1.0)
             put(0, 1, 0.0)
             put(0, 2, 1.0)
-
             put(1, 0, - 2.0)
             put(1, 1, 0.0)
             put(1, 2, 2.0)
-
             put(2, 0, -1.0)
             put(2, 1, 0.0)
             put(2, 2, 1.0)
         }
     }
-
     filter2D(source, destination, -1, kernel)
-    imwrite("robinson.jpg", destination)
+    imwrite("out/robinson.jpg", destination)
 }
+```
+##### < dip 
+<img src="data/dip/grayscale.jpg" height=25% width=25%/>
+
+##### > robinson.jpg 
+<img src="out/robinson.jpg" height=25% width=25%/>
+
 
 ## ApplyingWatermark.kt
-
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val source = imread("data/dip/digital_image_processing.jpg", IMREAD_COLOR)
@@ -490,23 +614,35 @@ fun main(args: Array<String>) {
         source, "dip.hellonico.info", Point((source.rows() / 2).toDouble(), (source.cols() / 2).toDouble()),
         FONT_ITALIC, 1.0, Scalar(255.0)
     )
-    imwrite("watermarked.jpg", source)
+    imwrite("out/watermarked.jpg", source)
 }
+```
+##### < dip 
+<img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
+
+##### > watermarked.jpg 
+<img src="out/watermarked.jpg" height=25% width=25%/>
+
 
 ## BilateralFilter.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val src = imread("data/marcel2019.jpg")
     val dst = Mat()
     bilateralFilter(src, dst, 15, 80.0, 80.0, Core.BORDER_DEFAULT)
-    imwrite("bilateral.jpg", dst)
+    imwrite("out/bilateral.jpg", dst)
 }
+```
+##### < marcel2019.jpg 
+<img src="data/marcel2019.jpg" height=25% width=25%/>
+
+##### > bilateral.jpg 
+<img src="out/bilateral.jpg" height=25% width=25%/>
+
 
 ## BoxFilter.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val src = imread("data/marcel2019.jpg")
@@ -514,24 +650,35 @@ fun main(args: Array<String>) {
     val size = Size(45.0, 45.0)
     val point = Point(-1.0, -1.0)
     boxFilter(src, dst, 50, size, point, true, Core.BORDER_DEFAULT)
-    imwrite("boxFilter.jpg", dst)
+    imwrite("out/RboxFilter.jpg", dst)
 }
+```
+##### < marcel2019.jpg 
+<img src="data/marcel2019.jpg" height=25% width=25%/>
+
+##### > RboxFilter.jpg 
+<img src="out/RboxFilter.jpg" height=25% width=25%/>
+
 
 ## SQRBoxFilterTest.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val src = imread("data/marcel2019.jpg")
     val dst = Mat()
     sqrBoxFilter(src, dst, -1, Size(1.0, 1.0))
-    imwrite("sqrBoxFilter.jpg", dst)
+    imwrite("out/sqrBoxFilter.jpg", dst)
 }
+```
+##### < marcel2019.jpg 
+<img src="data/marcel2019.jpg" height=25% width=25%/>
+
+##### > sqrBoxFilter.jpg 
+<img src="out/sqrBoxFilter.jpg" height=25% width=25%/>
+
 
 ## Filter2D.kt
-
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val src = imread("data/marcel2019.jpg")
@@ -548,52 +695,74 @@ fun main(args: Array<String>) {
     }
     println(kernel.dump())
     filter2D(src, dst, -1, kernel)
-    imwrite("filter2d.jpg", dst)
+    imwrite("out/filter2d.jpg", dst)
 }
+```
+##### < marcel2019.jpg 
+<img src="data/marcel2019.jpg" height=25% width=25%/>
+
+##### > filter2d.jpg 
+<img src="out/filter2d.jpg" height=25% width=25%/>
+
 
 ## BlurTest.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val (src,dst) = listOf(imread("data/marcel.jpg"), Mat())
     blur(src, dst, Size(100.0, 100.0), Point(20.0, 30.0), BORDER_REFLECT)
-    imwrite("blur.jpg", dst)
+    imwrite("out/blur.jpg", dst)
 }
+```
+##### < marcel.jpg 
+<img src="data/marcel.jpg" height=25% width=25%/>
+
+##### > blur.jpg 
+<img src="out/blur.jpg" height=25% width=25%/>
+
 
 ## GaussianTest.kt
-
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val src = imread("data/marcel2019.jpg")
     val dst = Mat()
     GaussianBlur(src, dst, Size(45.0, 45.0), 0.0)
-    imwrite("blur.jpg", dst)
+    imwrite("out/blur.jpg", dst)
 }
+```
+##### < marcel2019.jpg 
+<img src="data/marcel2019.jpg" height=25% width=25%/>
+
+##### > blur.jpg 
+<img src="out/blur.jpg" height=25% width=25%/>
+
 
 ## MedianTest.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val src = imread("data/marcel2019.jpg")
     val dst = Mat()
     medianBlur(src, dst, 15)
-    imwrite("blur.jpg", dst)
+    imwrite("out/blur.jpg", dst)
 }
+```
+##### < marcel2019.jpg 
+<img src="data/marcel2019.jpg" height=25% width=25%/>
+
+##### > blur.jpg 
+<img src="out/blur.jpg" height=25% width=25%/>
+
 
 ## OptimizingGrabcut.kt
-
-
+```java
 fun main(args: Array<String>) {
     Origami.init()
     val mat = imread("data/marcel2019.jpg")
     val result = extractFace(mat, 300, 1200, 300, 900)
-    imwrite("grabcut.jpg", result)
+    imwrite("out/grabcut.jpg", result)
 }
-
 fun extractFace(image: Mat, xOne: Int, xTwo: Int, yOne: Int, yTwo: Int): Mat {
     val rectangle = Rect(xOne, yOne, xTwo, yTwo)
     val result = Mat()
@@ -607,27 +776,30 @@ fun extractFace(image: Mat, xOne: Int, xTwo: Int, yOne: Int, yTwo: Int): Mat {
     image.copyTo(foreground, result)
     return foreground
 }
+```
+##### < marcel2019.jpg 
+<img src="data/marcel2019.jpg" height=25% width=25%/>
+
+##### > grabcut.jpg 
+<img src="out/grabcut.jpg" height=25% width=25%/>
+
 
 ## BodyTransfer.kt
-
-
+```java
 const val DEFAULT_CLASSIFIER =
-const val IMAGE_PATH = "image.jpg"
 const val CLASSIFIER_PATH = "haarcascade.xml"
 val COLOR = Scalar(0.0, 100.0, 0.0)
-
 fun main(args: Array<String>) {
     Origami.init()
     val imageUrl = if (args.size >= 1 && args[0] != null) args[0] else DEFAULT_IMAGE
     val classifierUrl = if (args.size >= 2 && args[1] != null) args[1] else DEFAULT_CLASSIFIER
-    Downloader.transfer(imageUrl, IMAGE_PATH)
+    Downloader.transfer(imageUrl, "data/image.jpg")
     Downloader.transfer(classifierUrl, CLASSIFIER_PATH)
     val classifier = CascadeClassifier()
     classifier.load(CLASSIFIER_PATH)
-    val mat = imread(IMAGE_PATH)
+    val mat = imread("data/image.jpg")
     val bodies = MatOfRect()
     classifier.detectMultiScale(mat, bodies)
-
     for (body in bodies.toList()) {
         Imgproc.rectangle(
             mat,
@@ -637,570 +809,58 @@ fun main(args: Array<String>) {
             3
         )
     }
-
-    imwrite("output.jpg", mat)
+    imwrite("out/bodytransfer.jpg", mat)
 }
+```
+##### < image.jpg 
+<img src="data/image.jpg" height=25% width=25%/>
+
+##### > bodytransfer.jpg 
+<img src="out/bodytransfer.jpg" height=25% width=25%/>
+
 
 ## hello.kt
-
-
-object HelloCV {
-
-    @Throws(Exception::class)
-    @JvmStatic
-    fun main(args: Array<String>) {
-        Origami.init()
-        val hello = eye(3, 3, CV_8UC1)
-        println(hello.dump())
-    }
-
+```java
+fun main(args: Array<String>) {
+    Origami.init()
+    val hello = eye(3, 3, CV_8UC1)
+    println(hello.dump())
 }
+```
 
 ## InPainting.kt
-
-
+```java
 /**
  */
-
 fun main(args: Array<String>) {
     Origami.init()
     val img = imread("data/geeksforgeeks/cat_damaged.png")
     val mask = imread("data/geeksforgeeks/cat_mask.png", 0)
     val dst = Mat()
     inpaint(img, mask, dst, 3.0, INPAINT_NS)
-    imwrite("cat_inpainted.png", dst)
+    imwrite("out/cat_inpainted.png", dst)
 }
+```
+##### < geeksforgeeks 
+<img src="data/geeksforgeeks/cat_damaged.png" height=25% width=25%/>
 
-## Threshold.kt
+##### < geeksforgeeks 
+<img src="data/geeksforgeeks/cat_mask.png" height=25% width=25%/>
 
+##### > cat_inpainted.png 
+<img src="out/cat_inpainted.png" height=25% width=25%/>
 
-class Threshold(args: Array<String>) {
-    private var thresholdValue = 0
-    private var thresholdType = 3
-    private val src: Mat
-    private val srcGray = Mat()
-    private val dst = Mat()
-    private val frame: JFrame
-    private var imgLabel: JLabel? = null
-    private fun addComponentsToPane(pane: Container, img: Image) {
-        if (pane.layout !is BorderLayout) {
-            pane.add(JLabel("Container doesn't use BorderLayout!"))
-            return
-        }
-        val sliderPanel = JPanel()
-        sliderPanel.layout = BoxLayout(sliderPanel, BoxLayout.PAGE_AXIS)
-
-        sliderPanel.add(JLabel(TRACKBAR_TYPE))
-        val sliderThreshType = JSlider(0, MAX_TYPE, thresholdType)
-        sliderThreshType.majorTickSpacing = 1
-        sliderThreshType.minorTickSpacing = 1
-        sliderThreshType.paintTicks = true
-        sliderThreshType.paintLabels = true
-        sliderPanel.add(sliderThreshType)
-        sliderPanel.add(JLabel(TRACKBAR_VALUE))
-        val sliderThreshValue = JSlider(0, MAX_VALUE, 0)
-        sliderThreshValue.majorTickSpacing = 50
-        sliderThreshValue.minorTickSpacing = 10
-        sliderThreshValue.paintTicks = true
-        sliderThreshValue.paintLabels = true
-        sliderPanel.add(sliderThreshValue)
-
-        sliderThreshType.addChangeListener { e ->
-            val source = e.source as JSlider
-            thresholdType = source.value
-            update()
-        }
-        sliderThreshValue.addChangeListener { e ->
-            val source = e.source as JSlider
-            thresholdValue = source.value
-            update()
-        }
-        pane.add(sliderPanel, BorderLayout.PAGE_START)
-        imgLabel = JLabel(ImageIcon(img))
-        pane.add(imgLabel, BorderLayout.CENTER)
-    }
-
-    private fun update() {
-        Imgproc.threshold(srcGray, dst, thresholdValue.toDouble(), MAX_BINARY_VALUE.toDouble(), thresholdType)
-        val img = HighGui.toBufferedImage(dst)
-        imgLabel!!.icon = ImageIcon(img)
-        frame.repaint()
-    }
-
-    companion object {
-        private const val MAX_VALUE = 255
-        private const val MAX_TYPE = 4
-        private const val MAX_BINARY_VALUE = 255
-        private const val WINDOW_NAME = "opencvtutorial.Threshold Demo"
-        private const val TRACKBAR_TYPE = ("<html><body>Type: <br> 0: Binary <br> "
-                + "1: Binary Inverted <br> 2: Truncate <br> " + "3: To Zero <br> 4: To Zero Inverted</body></html>")
-        private const val TRACKBAR_VALUE = "Value"
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-
-            SwingUtilities.invokeLater { Threshold(args) }
-        }
-
-        init {
-            Origami.init()
-        }
-    }
-
-    init {
-        var imagePath = "data/stuff.jpg"
-        if (args.size > 0) {
-            imagePath = args[0]
-        }
-        src = Imgcodecs.imread(imagePath)
-        if (src.empty()) {
-            println("Empty image: $imagePath")
-            System.exit(0)
-        }
-        Imgproc.cvtColor(src, srcGray, Imgproc.COLOR_BGR2GRAY)
-
-        frame = JFrame(WINDOW_NAME)
-        frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-        val img = HighGui.toBufferedImage(srcGray)
-        addComponentsToPane(frame.contentPane, img)
-        frame.pack()
-        frame.isVisible = true
-    }
-}
-
-## ThresholdInRange.kt
-
-
-/**
- */
-class ThresholdInRange(args: Array<String>) {
-    private var sliderLowH: JSlider? = null
-    private var sliderHighH: JSlider? = null
-    private var sliderLowS: JSlider? = null
-    private var sliderHighS: JSlider? = null
-    private var sliderLowV: JSlider? = null
-    private var sliderHighV: JSlider? = null
-    private val cap: VideoCapture
-    private val matFrame = Mat()
-    private val frame: JFrame
-    private var imgCaptureLabel: JLabel? = null
-    private var imgDetectionLabel: JLabel? = null
-    private val captureTask: CaptureTask
-
-    private inner class CaptureTask : SwingWorker<Void?, Mat?>() {
-        override fun doInBackground(): Void? {
-            val matFrame = Mat()
-            while (!isCancelled) {
-                if (!cap.read(matFrame)) {
-                    break
-                }
-                publish(matFrame.clone())
-            }
-            return null
-        }
-
-        override fun process(frames: List<Mat?>) {
-            val frame = frames[frames.size - 1]
-            val frameHSV = Mat()
-            Imgproc.cvtColor(frame, frameHSV, Imgproc.COLOR_BGR2HSV)
-            val thresh = Mat()
-            Core.inRange(
-                frameHSV, Scalar(
-                    sliderLowH!!.value.toDouble(), sliderLowS!!.value.toDouble(), sliderLowV!!.value.toDouble()
-                ),
-                Scalar(
-                    sliderHighH!!.value.toDouble(), sliderHighS!!.value.toDouble(), sliderHighV!!.value.toDouble()
-                ), thresh
-            )
-            update(frame, thresh)
-        }
-    }
-
-    private fun addComponentsToPane(pane: Container, img: Image) {
-        if (pane.layout !is BorderLayout) {
-            pane.add(JLabel("Container doesn't use BorderLayout!"))
-            return
-        }
-        val sliderPanel = JPanel()
-        sliderPanel.layout = BoxLayout(sliderPanel, BoxLayout.PAGE_AXIS)
-        sliderPanel.add(JLabel(LOW_H_NAME))
-        sliderLowH = JSlider(0, MAX_VALUE_H, 0)
-        sliderLowH!!.majorTickSpacing = 50
-        sliderLowH!!.minorTickSpacing = 10
-        sliderLowH!!.paintTicks = true
-        sliderLowH!!.paintLabels = true
-        sliderPanel.add(sliderLowH)
-        sliderPanel.add(JLabel(HIGH_H_NAME))
-        sliderHighH = JSlider(0, MAX_VALUE_H, MAX_VALUE_H)
-        sliderHighH!!.majorTickSpacing = 50
-        sliderHighH!!.minorTickSpacing = 10
-        sliderHighH!!.paintTicks = true
-        sliderHighH!!.paintLabels = true
-        sliderPanel.add(sliderHighH)
-        sliderPanel.add(JLabel(LOW_S_NAME))
-        sliderLowS = JSlider(0, MAX_VALUE, 0)
-        sliderLowS!!.majorTickSpacing = 50
-        sliderLowS!!.minorTickSpacing = 10
-        sliderLowS!!.paintTicks = true
-        sliderLowS!!.paintLabels = true
-        sliderPanel.add(sliderLowS)
-        sliderPanel.add(JLabel(HIGH_S_NAME))
-        sliderHighS = JSlider(0, MAX_VALUE, MAX_VALUE)
-        sliderHighS!!.majorTickSpacing = 50
-        sliderHighS!!.minorTickSpacing = 10
-        sliderHighS!!.paintTicks = true
-        sliderHighS!!.paintLabels = true
-        sliderPanel.add(sliderHighS)
-        sliderPanel.add(JLabel(LOW_V_NAME))
-        sliderLowV = JSlider(0, MAX_VALUE, 0)
-        sliderLowV!!.majorTickSpacing = 50
-        sliderLowV!!.minorTickSpacing = 10
-        sliderLowV!!.paintTicks = true
-        sliderLowV!!.paintLabels = true
-        sliderPanel.add(sliderLowV)
-        sliderPanel.add(JLabel(HIGH_V_NAME))
-        sliderHighV = JSlider(0, MAX_VALUE, MAX_VALUE)
-        sliderHighV!!.majorTickSpacing = 50
-        sliderHighV!!.minorTickSpacing = 10
-        sliderHighV!!.paintTicks = true
-        sliderHighV!!.paintLabels = true
-        sliderPanel.add(sliderHighV)
-        sliderLowH!!.addChangeListener { e ->
-            val source = e.source as JSlider
-            val valH = Math.min(sliderHighH!!.value - 1, source.value)
-            sliderLowH!!.value = valH
-        }
-        sliderHighH!!.addChangeListener { e ->
-            val source = e.source as JSlider
-            val valH = Math.max(source.value, sliderLowH!!.value + 1)
-            sliderHighH!!.value = valH
-        }
-        sliderLowS!!.addChangeListener { e ->
-            val source = e.source as JSlider
-            val valS = Math.min(sliderHighS!!.value - 1, source.value)
-            sliderLowS!!.value = valS
-        }
-        sliderHighS!!.addChangeListener { e ->
-            val source = e.source as JSlider
-            val valS = Math.max(source.value, sliderLowS!!.value + 1)
-            sliderHighS!!.value = valS
-        }
-        sliderLowV!!.addChangeListener { e ->
-            val source = e.source as JSlider
-            val valV = Math.min(sliderHighV!!.value - 1, source.value)
-            sliderLowV!!.value = valV
-        }
-        sliderHighV!!.addChangeListener { e ->
-            val source = e.source as JSlider
-            val valV = Math.max(source.value, sliderLowV!!.value + 1)
-            sliderHighV!!.value = valV
-        }
-        pane.add(sliderPanel, BorderLayout.PAGE_START)
-        val framePanel = JPanel()
-        imgCaptureLabel = JLabel(ImageIcon(img))
-        imgDetectionLabel = JLabel(ImageIcon(img))
-        framePanel.add(imgDetectionLabel)
-        pane.add(framePanel, BorderLayout.CENTER)
-    }
-
-    private fun update(imgCapture: Mat?, imgThresh: Mat) {
-        imgCaptureLabel!!.icon = ImageIcon(HighGui.toBufferedImage(imgCapture))
-        imgDetectionLabel!!.icon = ImageIcon(HighGui.toBufferedImage(imgThresh))
-        frame.repaint()
-    }
-
-    companion object {
-        private const val MAX_VALUE = 255
-        private const val MAX_VALUE_H = 360 / 2
-        private const val WINDOW_NAME = "Thresholding Operations using inRange demo"
-        private const val LOW_H_NAME = "Low H"
-        private const val LOW_S_NAME = "Low S"
-        private const val LOW_V_NAME = "Low V"
-        private const val HIGH_H_NAME = "High H"
-        private const val HIGH_S_NAME = "High S"
-        private const val HIGH_V_NAME = "High V"
-        @JvmStatic
-        fun main(args: Array<String>) {
-            Origami.init()
-            SwingUtilities.invokeLater { ThresholdInRange(args) }
-        }
-    }
-
-    init {
-        var cameraDevice = 0
-        if (args.size > 0) {
-            cameraDevice = args[0].toInt()
-        }
-        cap = VideoCapture()
-        captureTask = CaptureTask()
-        cap.open(cameraDevice)
-        if (!cap.isOpened) {
-            System.err.println("Cannot open camera: $cameraDevice")
-            System.exit(0)
-        }
-        if (!cap.read(matFrame)) {
-            System.err.println("Cannot read camera stream.")
-            System.exit(0)
-        }
-        frame = JFrame(WINDOW_NAME)
-        frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-        frame.addWindowListener(object : WindowAdapter() {
-            override fun windowClosing(windowEvent: WindowEvent) {
-                captureTask.cancel(true)
-            }
-        })
-        val img = HighGui.toBufferedImage(matFrame)
-        addComponentsToPane(frame.contentPane, img)
-        frame.pack()
-        frame.isVisible = true
-
-        captureTask.execute()
-    }
-}
-
-## SurfMatchingDemo.kt
-
-
-fun SURFMatching(args: Array<String>) {
-    val filename1 = if (args.size > 1) args[0] else "data/opencvtutorial/box.png"
-    val filename2 = if (args.size > 1) args[1] else "data/opencvtutorial/box_in_scene.png"
-    val img1 = imread(filename1, IMREAD_GRAYSCALE)
-    val img2 = imread(filename2, IMREAD_GRAYSCALE)
-
-    val hessianThreshold = 400.0
-    val nOctaves = 4
-    val nOctaveLayers = 3
-    val extended = false
-    val upright = false
-
-    val detector = SURF.create(hessianThreshold, nOctaves, nOctaveLayers, extended, upright)
-    val keypoints1 = MatOfKeyPoint()
-    val keypoints2 = MatOfKeyPoint()
-    val descriptors1 = Mat()
-    val descriptors2 = Mat()
-    detector.detectAndCompute(img1, Mat(), keypoints1, descriptors1)
-    detector.detectAndCompute(img2, Mat(), keypoints2, descriptors2)
-
-    val matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE)
-    val matches = MatOfDMatch()
-    matcher.match(descriptors1, descriptors2, matches)
-
-    val imgMatches = Mat()
-    Features2d.drawMatches(img1, keypoints1, img2, keypoints2, matches, imgMatches)
-    imshow("Matches", imgMatches)
-    waitKey(0)
-}
-
-fun main(args: Array<String>) {
-    Origami.init()
-    SURFMatching(args)
-}
-
-## MorphologyDemo2.kt
-
-
-class MorphologyDemo2(args: Array<String>) {
-    private val matImgSrc: Mat
-    private val matImgDst = Mat()
-    private var morphOpType = MORPH_OPEN
-    private var elementType = CV_SHAPE_RECT
-    private var kernelSize = 0
-    private val frame: JFrame
-    private var imgLabel: JLabel? = null
-    private fun addComponentsToPane(pane: Container, img: Image) {
-        if (pane.layout !is BorderLayout) {
-            pane.add(JLabel("Container doesn't use BorderLayout!"))
-            return
-        }
-        val sliderPanel = JPanel()
-        sliderPanel.layout = BoxLayout(sliderPanel, BoxLayout.PAGE_AXIS)
-        val morphOpBox = JComboBox(MORPH_OP)
-        morphOpBox.addActionListener { e ->
-            val cb = e.source as JComboBox<String>
-            morphOpType = MORPH_OP_TYPE[cb.selectedIndex]
-            update()
-        }
-        sliderPanel.add(morphOpBox)
-        val elementTypeBox = JComboBox(ELEMENT_TYPE)
-        elementTypeBox.addActionListener { e ->
-            val cb = e.source as JComboBox<String>
-            if (cb.selectedIndex == 0) {
-                elementType = CV_SHAPE_RECT
-            } else if (cb.selectedIndex == 1) {
-                elementType = CV_SHAPE_CROSS
-            } else if (cb.selectedIndex == 2) {
-                elementType = CV_SHAPE_ELLIPSE
-            }
-            update()
-        }
-        sliderPanel.add(elementTypeBox)
-        sliderPanel.add(JLabel("Kernel size: 2n + 1"))
-        val slider = JSlider(0, MAX_KERNEL_SIZE, 0)
-        slider.majorTickSpacing = 5
-        slider.minorTickSpacing = 5
-        slider.paintTicks = true
-        slider.paintLabels = true
-        slider.addChangeListener { e ->
-            val source = e.source as JSlider
-            kernelSize = source.value
-            update()
-        }
-        sliderPanel.add(slider)
-        pane.add(sliderPanel, BorderLayout.PAGE_START)
-        imgLabel = JLabel(ImageIcon(img))
-        pane.add(imgLabel, BorderLayout.CENTER)
-    }
-
-    private fun update() {
-        val element = getStructuringElement(
-            elementType, Size((2 * kernelSize + 1).toDouble(), (2 * kernelSize + 1).toDouble()),
-            Point(kernelSize.toDouble(), kernelSize.toDouble())
-        )
-        morphologyEx(matImgSrc, matImgDst, morphOpType, element)
-        val img = HighGui.toBufferedImage(matImgDst)
-        imgLabel!!.icon = ImageIcon(img)
-        frame.repaint()
-    }
-
-    private val MORPH_OP = arrayOf("Opening", "Closing", "Gradient", "Top Hat", "Black Hat")
-    private val MORPH_OP_TYPE = intArrayOf(
-        MORPH_OPEN, MORPH_CLOSE, MORPH_GRADIENT,
-        MORPH_TOPHAT, MORPH_BLACKHAT
-    )
-    private val ELEMENT_TYPE = arrayOf("Rectangle", "Cross", "Ellipse")
-    private val MAX_KERNEL_SIZE = 21
-
-    init {
-        val imagePath = if (args.size > 0) args[0] else "data/geeksforgeeks/cat_inpainted.png"
-        matImgSrc = Imgcodecs.imread(imagePath)
-        if (matImgSrc.empty()) {
-            println("Empty image: $imagePath")
-            System.exit(0)
-        }
-
-        frame = JFrame("Morphology Transformations demo")
-        frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-        val img = HighGui.toBufferedImage(matImgSrc)
-        addComponentsToPane(frame.contentPane, img)
-        frame.pack()
-        frame.isVisible = true
-    }
-}
-
-fun main(args: Array<String>) {
-    Origami.init()
-    SwingUtilities.invokeLater { MorphologyDemo2(args) }
-}
-
-
-## FindContoursDemo.kt
-
-
-internal class FindContours(args: Array<String>) {
-    private val srcGray = Mat()
-    private val frame: JFrame
-    private var imgSrcLabel: JLabel? = null
-    private var imgContoursLabel: JLabel? = null
-    private var threshold = 100
-    private val rng = Random(12345)
-    private fun addComponentsToPane(pane: Container, img: Image) {
-        if (pane.layout !is BorderLayout) {
-            pane.add(JLabel("Container doesn't use BorderLayout!"))
-            return
-        }
-        val sliderPanel = JPanel()
-        sliderPanel.layout = BoxLayout(sliderPanel, BoxLayout.PAGE_AXIS)
-        sliderPanel.add(JLabel("Canny threshold: "))
-        val slider = JSlider(0, MAX_THRESHOLD, threshold)
-        slider.majorTickSpacing = 20
-        slider.minorTickSpacing = 10
-        slider.paintTicks = true
-        slider.paintLabels = true
-        slider.addChangeListener { e ->
-            val source = e.source as JSlider
-            threshold = source.value
-            update()
-        }
-        sliderPanel.add(slider)
-        pane.add(sliderPanel, BorderLayout.PAGE_START)
-        val imgPanel = JPanel()
-        imgSrcLabel = JLabel(ImageIcon(img))
-        imgPanel.add(imgSrcLabel)
-        val blackImg = Mat.zeros(srcGray.size(), CvType.CV_8U)
-        imgContoursLabel = JLabel(ImageIcon(HighGui.toBufferedImage(blackImg)))
-        imgPanel.add(imgContoursLabel)
-        pane.add(imgPanel, BorderLayout.CENTER)
-    }
-
-    private fun update() {
-        val cannyOutput = Mat()
-        Imgproc.Canny(srcGray, cannyOutput, threshold.toDouble(), (threshold * 2).toDouble())
-
-        val contours: List<MatOfPoint> = ArrayList()
-        val hierarchy = Mat()
-        Imgproc.findContours(cannyOutput, contours, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE)
-
-        val drawing = Mat.zeros(cannyOutput.size(), CvType.CV_8UC3)
-        for (i in contours.indices) {
-            val color = Scalar(
-                rng.nextInt(256).toDouble(), rng.nextInt(256).toDouble(), rng.nextInt(256).toDouble()
-            )
-            Imgproc.drawContours(drawing, contours, i, color, 2, Imgproc.LINE_8, hierarchy, 0, Point())
-        }
-        imgContoursLabel!!.icon = ImageIcon(HighGui.toBufferedImage(drawing))
-        frame.repaint()
-    }
-
-    companion object {
-        private const val MAX_THRESHOLD = 255
-    }
-
-    init {
-        val filename = if (args.size > 0) args[0] else "data/HappyFish.jpg"
-        val src = Imgcodecs.imread(filename)
-        if (src.empty()) {
-            System.err.println("Cannot read image: $filename")
-            System.exit(0)
-        }
-
-        Imgproc.cvtColor(src, srcGray, Imgproc.COLOR_BGR2GRAY)
-        Imgproc.blur(srcGray, srcGray, Size(3.0, 3.0))
-
-        frame = JFrame("Finding contours in your image demo")
-        frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-        val img = HighGui.toBufferedImage(src)
-        addComponentsToPane(frame.contentPane, img)
-        frame.pack()
-        frame.isVisible = true
-        update()
-    }
-}
-
-object FindContoursDemo {
-    @JvmStatic
-    fun main(args: Array<String>) {
-
-        SwingUtilities.invokeLater { FindContours(args) }
-    }
-
-    init {
-        try {
-        } catch (e: Exception) {
-        }
-    }
-}
 
 ## simple.kt
-
-
+```java
 fun main(args: Array<String>) {
     init()
     Camera().run()
 }
+```
 
 ## simpleWithFilter.kt
-
-
+```java
 fun main(args: Array<String>) {
     init()
     Camera().filter(Function { im ->
@@ -1211,4 +871,5 @@ fun main(args: Array<String>) {
         target
     }).run()
 }
+```
 
