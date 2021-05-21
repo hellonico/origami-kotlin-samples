@@ -77,13 +77,13 @@ fun main(args: Array<String>) {
     imwrite("out/boxfilterKernel9.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-__> boxfilterKernel5.jpg __
+**> boxfilterKernel5.jpg**
 <img src="out/boxfilterKernel5.jpg" height=25% width=25%/>
 
-__> boxfilterKernel9.jpg __
+**> boxfilterKernel9.jpg**
 <img src="out/boxfilterKernel9.jpg" height=25% width=25%/>
 
 ## dip > GaussianFilter.kt
@@ -99,13 +99,13 @@ fun main(args: Array<String>) {
     imwrite("out/gaussianblur45.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-__> gaussianblur1.jpg __
+**> gaussianblur1.jpg**
 <img src="out/gaussianblur1.jpg" height=25% width=25%/>
 
-__> gaussianblur45.jpg __
+**> gaussianblur45.jpg**
 <img src="out/gaussianblur45.jpg" height=25% width=25%/>
 
 ## dip > ApplyingWatermarkWithROI.kt
@@ -120,13 +120,13 @@ fun main(args: Array<String>) {
     imwrite("out/watermarkedROI.jpg", source)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-__< dip __
+**< dip**
 <img src="data/dip/watermark.jpg" height=25% width=25%/>
 
-__> watermarkedROI.jpg __
+**> watermarkedROI.jpg**
 <img src="out/watermarkedROI.jpg" height=25% width=25%/>
 
 ## dip > EnhanceImageSharpness.kt
@@ -141,10 +141,10 @@ fun main(args: Array<String>) {
     imwrite("out/sharp.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-__> sharp.jpg __
+**> sharp.jpg**
 <img src="out/sharp.jpg" height=25% width=25%/>
 
 ## dip > Sobel.kt
@@ -172,10 +172,10 @@ fun main(args: Array<String>) {
     imwrite("out/sobel.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-__> sobel.jpg __
+**> sobel.jpg**
 <img src="out/sobel.jpg" height=25% width=25%/>
 
 ## dip > EnhanceImageBrightness.kt
@@ -191,10 +191,10 @@ fun main(args: Array<String>) {
     imwrite("out/brightWithAlpha2Beta50.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-__> brightWithAlpha2Beta50.jpg __
+**> brightWithAlpha2Beta50.jpg**
 <img src="out/brightWithAlpha2Beta50.jpg" height=25% width=25%/>
 
 ## dip > Prewitt.kt
@@ -222,10 +222,10 @@ fun main(args: Array<String>) {
     imwrite("out/prewitt.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-__> prewitt.jpg __
+**> prewitt.jpg**
 <img src="out/prewitt.jpg" height=25% width=25%/>
 
 ## dip > ZoomingEffect.kt
@@ -247,10 +247,10 @@ fun main(args: Array<String>) {
     imwrite("out/zoomed2.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-__> zoomed2.jpg __
+**> zoomed2.jpg**
 <img src="out/zoomed2.jpg" height=25% width=25%/>
 
 ## dip > Kirsch.kt
@@ -278,10 +278,10 @@ fun main(args: Array<String>) {
     imwrite("out/kirsch.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-__> kirsch.jpg __
+**> kirsch.jpg**
 <img src="out/kirsch.jpg" height=25% width=25%/>
 
 ## dip > Pixelize.kt
@@ -298,10 +298,10 @@ fun main(args: Array<String>) {
     imwrite("out/pixelized.jpg", target)
 }
 ```
-__< bear.png __
+**< bear.png**
 <img src="data/bear.png" height=25% width=25%/>
 
-__> pixelized.jpg __
+**> pixelized.jpg**
 <img src="out/pixelized.jpg" height=25% width=25%/>
 
 ## dip > ImageShapeConversions.kt
@@ -341,19 +341,19 @@ fun main(args: Array<String>) {
     imwrite("out/ThreshBinaryInv.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-__> ThreshZero.jpg __
+**> ThreshZero.jpg**
 <img src="out/ThreshZero.jpg" height=25% width=25%/>
 
-__> ThreshZeroInv.jpg __
+**> ThreshZeroInv.jpg**
 <img src="out/ThreshZeroInv.jpg" height=25% width=25%/>
 
-__> ThreshBinary.jpg __
+**> ThreshBinary.jpg**
 <img src="out/ThreshBinary.jpg" height=25% width=25%/>
 
-__> ThreshBinaryInv.jpg __
+**> ThreshBinaryInv.jpg**
 <img src="out/ThreshBinaryInv.jpg" height=25% width=25%/>
 
 ## dip > EnhanceImageContrast.kt
@@ -367,10 +367,10 @@ fun main(args: Array<String>) {
     imwrite("out/contrast.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-__> contrast.jpg __
+**> contrast.jpg**
 <img src="out/contrast.jpg" height=25% width=25%/>
 
 ## dip > ImagePyramid.kt
@@ -388,16 +388,16 @@ fun main(args: Array<String>) {
     imwrite("out/pyrDown.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-__< dip __
+**< dip**
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-__> pyrUp.jpg __
+**> pyrUp.jpg**
 <img src="out/pyrUp.jpg" height=25% width=25%/>
 
-__> pyrDown.jpg __
+**> pyrDown.jpg**
 <img src="out/pyrDown.jpg" height=25% width=25%/>
 
 ## dip > ErodingDilating.kt
@@ -423,13 +423,13 @@ fun main(args: Array<String>) {
     imwrite("out/dilation.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-__> erosion.jpg __
+**> erosion.jpg**
 <img src="out/erosion.jpg" height=25% width=25%/>
 
-__> dilation.jpg __
+**> dilation.jpg**
 <img src="out/dilation.jpg" height=25% width=25%/>
 
 ## dip > AddingBorder.kt
@@ -451,16 +451,16 @@ fun main(args: Array<String>) {
     imwrite("out/borderReplicate.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-__> borderWrap.jpg __
+**> borderWrap.jpg**
 <img src="out/borderWrap.jpg" height=25% width=25%/>
 
-__> borderReflect.jpg __
+**> borderReflect.jpg**
 <img src="out/borderReflect.jpg" height=25% width=25%/>
 
-__> borderReplicate.jpg __
+**> borderReplicate.jpg**
 <img src="out/borderReplicate.jpg" height=25% width=25%/>
 
 ## dip > WeightedAverage.kt
@@ -489,10 +489,10 @@ fun main(args: Array<String>) {
     imwrite("out/weightedaveragefilter.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-__> weightedaveragefilter.jpg __
+**> weightedaveragefilter.jpg**
 <img src="out/weightedaveragefilter.jpg" height=25% width=25%/>
 
 ## dip > Convolution.kt
@@ -520,10 +520,10 @@ fun main(args: Array<String>) {
     imwrite("out/understand.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-__> understand.jpg __
+**> understand.jpg**
 <img src="out/understand.jpg" height=25% width=25%/>
 
 ## dip > Laplacian.kt
@@ -551,10 +551,10 @@ fun main(args: Array<String>) {
     imwrite("out/laplacian.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-__> laplacian.jpg __
+**> laplacian.jpg**
 <img src="out/laplacian.jpg" height=25% width=25%/>
 
 ## dip > ColorSpaceConversion.kt
@@ -568,10 +568,10 @@ fun main(args: Array<String>) {
     imwrite("out/hsv.jpg", mat1)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-__> hsv.jpg __
+**> hsv.jpg**
 <img src="out/hsv.jpg" height=25% width=25%/>
 
 ## dip > Robinson.kt
@@ -599,10 +599,10 @@ fun main(args: Array<String>) {
     imwrite("out/robinson.jpg", destination)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-__> robinson.jpg __
+**> robinson.jpg**
 <img src="out/robinson.jpg" height=25% width=25%/>
 
 ## dip > ApplyingWatermark.kt
@@ -618,10 +618,10 @@ fun main(args: Array<String>) {
     imwrite("out/watermarked.jpg", source)
 }
 ```
-__< dip __
+**< dip**
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-__> watermarked.jpg __
+**> watermarked.jpg**
 <img src="out/watermarked.jpg" height=25% width=25%/>
 
 ## tutorialpoint > BilateralFilter.kt
@@ -635,10 +635,10 @@ fun main(args: Array<String>) {
     imwrite("out/bilateral.jpg", dst)
 }
 ```
-__< marcel2019.jpg __
+**< marcel2019.jpg**
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-__> bilateral.jpg __
+**> bilateral.jpg**
 <img src="out/bilateral.jpg" height=25% width=25%/>
 
 ## tutorialpoint > BoxFilter.kt
@@ -654,10 +654,10 @@ fun main(args: Array<String>) {
     imwrite("out/RboxFilter.jpg", dst)
 }
 ```
-__< marcel2019.jpg __
+**< marcel2019.jpg**
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-__> RboxFilter.jpg __
+**> RboxFilter.jpg**
 <img src="out/RboxFilter.jpg" height=25% width=25%/>
 
 ## tutorialpoint > SQRBoxFilterTest.kt
@@ -671,10 +671,10 @@ fun main(args: Array<String>) {
     imwrite("out/sqrBoxFilter.jpg", dst)
 }
 ```
-__< marcel2019.jpg __
+**< marcel2019.jpg**
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-__> sqrBoxFilter.jpg __
+**> sqrBoxFilter.jpg**
 <img src="out/sqrBoxFilter.jpg" height=25% width=25%/>
 
 ## tutorialpoint > Filter2D.kt
@@ -699,10 +699,10 @@ fun main(args: Array<String>) {
     imwrite("out/filter2d.jpg", dst)
 }
 ```
-__< marcel2019.jpg __
+**< marcel2019.jpg**
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-__> filter2d.jpg __
+**> filter2d.jpg**
 <img src="out/filter2d.jpg" height=25% width=25%/>
 
 ## tutorialpoint > BlurTest.kt
@@ -715,10 +715,10 @@ fun main(args: Array<String>) {
     imwrite("out/blur.jpg", dst)
 }
 ```
-__< marcel.jpg __
+**< marcel.jpg**
 <img src="data/marcel.jpg" height=25% width=25%/>
 
-__> blur.jpg __
+**> blur.jpg**
 <img src="out/blur.jpg" height=25% width=25%/>
 
 ## tutorialpoint > GaussianTest.kt
@@ -732,10 +732,10 @@ fun main(args: Array<String>) {
     imwrite("out/blur.jpg", dst)
 }
 ```
-__< marcel2019.jpg __
+**< marcel2019.jpg**
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-__> blur.jpg __
+**> blur.jpg**
 <img src="out/blur.jpg" height=25% width=25%/>
 
 ## tutorialpoint > MedianTest.kt
@@ -749,10 +749,10 @@ fun main(args: Array<String>) {
     imwrite("out/blur.jpg", dst)
 }
 ```
-__< marcel2019.jpg __
+**< marcel2019.jpg**
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-__> blur.jpg __
+**> blur.jpg**
 <img src="out/blur.jpg" height=25% width=25%/>
 
 ## stackoverflow > OptimizingGrabcut.kt
@@ -778,10 +778,10 @@ fun extractFace(image: Mat, xOne: Int, xTwo: Int, yOne: Int, yTwo: Int): Mat {
     return foreground
 }
 ```
-__< marcel2019.jpg __
+**< marcel2019.jpg**
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-__> grabcut.jpg __
+**> grabcut.jpg**
 <img src="out/grabcut.jpg" height=25% width=25%/>
 
 ## me > hello.kt
@@ -822,10 +822,10 @@ fun main(args: Array<String>) {
     imwrite("out/bodytransfer.jpg", mat)
 }
 ```
-__< image.jpg __
+**< image.jpg**
 <img src="data/image.jpg" height=25% width=25%/>
 
-__> bodytransfer.jpg __
+**> bodytransfer.jpg**
 <img src="out/bodytransfer.jpg" height=25% width=25%/>
 
 ## geeksforgeeks > InPainting.kt
@@ -842,13 +842,13 @@ fun main(args: Array<String>) {
     imwrite("out/cat_inpainted.png", dst)
 }
 ```
-__< geeksforgeeks __
+**< geeksforgeeks**
 <img src="data/geeksforgeeks/cat_damaged.png" height=25% width=25%/>
 
-__< geeksforgeeks __
+**< geeksforgeeks**
 <img src="data/geeksforgeeks/cat_mask.png" height=25% width=25%/>
 
-__> cat_inpainted.png __
+**> cat_inpainted.png**
 <img src="out/cat_inpainted.png" height=25% width=25%/>
 
 ## webcam > simple.kt

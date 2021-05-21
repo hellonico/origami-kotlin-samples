@@ -23,7 +23,7 @@ for i in `find . -name "*.kt"` ; do
   for out in $INS ; do
     img=`echo $out| head -n1 | cut -d"\"" -f2`
     imgt=`echo $img | cut -d"/" -f2`
-    echo "__< $imgt __"
+    echo "**< $imgt**"
     echo "<img src=\"$img\" height=25% width=25%/>"
     echo ""
   done
@@ -33,7 +33,7 @@ for i in `find . -name "*.kt"` ; do
   for out in $OUTS ; do
     img=`echo $out| head -n1 | cut -d"\"" -f2`
     imgt=`echo $img | cut -d"/" -f2`
-    echo "__> $imgt __"
+    echo "**> $imgt**"
     echo "<img src=\"$img\" height=25% width=25%/>"
     echo ""
   done
