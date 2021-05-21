@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
     cvtColor(im, hsv, COLOR_BGR2HSV) // HSV色空間に変換
     inRange(hsv, Scalar(100.0, 10.0, 0.0), Scalar(140.0, 255.0, 255.0), mask) // 緑色領域のマスク作成
     im.copyTo(im2, mask) // マスクを 用いて入力画像から緑色領域を抽出
-    imwrite("tanaka.jpg", im2) // 画像の出力
+    imwrite("out/tanakahsvmask.jpg", im2) // 画像の出力
     bitwise_not(mask, mask)
     val im3 = Mat()
     im.copyTo(im3, mask) // マスクを 用いて入力画像から緑色領域を抽出
