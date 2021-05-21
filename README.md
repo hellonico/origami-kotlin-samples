@@ -412,7 +412,7 @@ fun main(args: Array<String>) {
         Size((2 * erosion_size + 1).toDouble(), (2 * erosion_size + 1).toDouble())
     )
     erode(source, destination, element)
-    imwrite("erosion.jpg", destination)
+    imwrite("out/erosion.jpg", destination)
     val dilation_size = 5
     val element1 = getStructuringElement(
         MORPH_RECT,
@@ -426,7 +426,7 @@ fun main(args: Array<String>) {
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
 ##### > erosion.jpg 
-<img src="erosion.jpg" height=25% width=25%/>
+<img src="out/erosion.jpg" height=25% width=25%/>
 
 ##### > dilation.jpg 
 <img src="out/dilation.jpg" height=25% width=25%/>
@@ -683,12 +683,12 @@ fun main(args: Array<String>) {
     Origami.init()
     val src = imread("data/marcel2019.jpg")
     val dst = Mat()
-    val kernel = Mat.zeros(5, 5, CvType.CV_32F)
+    val kernel = Mat.ones(5, 5, CvType.CV_32F)
     for (i in 0 until kernel.rows()) {
         for (j in 0 until kernel.cols()) {
-            val m = kernel[i, j]
+            val m:DoubleArray = kernel[i, j]
             for (k in 1 until m.size) {
-                m[k] = m[k] / (2 * 2)
+                m[k] = m[k] / 2
             }
             kernel.put(i, j, *m)
         }
