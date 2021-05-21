@@ -1,4 +1,5 @@
-## backgroundModel.kt
+## tobybreckon > backgroundModel.kt
+<a href="./src/main/kotlin/tobybreckon/backgroundModel.kt">backgroundModel.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -15,8 +16,8 @@ fun main(args: Array<String>) {
     ).run()
 }
 ```
-
-## hogPeopleDetection.kt
+## tobybreckon > hogPeopleDetection.kt
+<a href="./src/main/kotlin/tobybreckon/hogPeopleDetection.kt">hogPeopleDetection.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -48,8 +49,8 @@ private fun drawLocations(foundLocations: MatOfRect, it: Mat?, color: Scalar): M
     return it
 }
 ```
-
-## ApplyingBoxFilter.kt
+## dip > ApplyingBoxFilter.kt
+<a href="./src/main/kotlin/dip/ApplyingBoxFilter.kt">ApplyingBoxFilter.kt</a>
 ```java
 fun createKernelOfSize(kernelSize: Int): Mat {
     val kernel = Mat.ones(kernelSize, kernelSize, CvType.CV_32F)
@@ -76,17 +77,17 @@ fun main(args: Array<String>) {
     imwrite("out/boxfilterKernel9.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-##### > boxfilterKernel5.jpg 
+__> boxfilterKernel5.jpg __
 <img src="out/boxfilterKernel5.jpg" height=25% width=25%/>
 
-##### > boxfilterKernel9.jpg 
+__> boxfilterKernel9.jpg __
 <img src="out/boxfilterKernel9.jpg" height=25% width=25%/>
 
-
-## GaussianFilter.kt
+## dip > GaussianFilter.kt
+<a href="./src/main/kotlin/dip/GaussianFilter.kt">GaussianFilter.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -98,17 +99,17 @@ fun main(args: Array<String>) {
     imwrite("out/gaussianblur45.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-##### > gaussianblur1.jpg 
+__> gaussianblur1.jpg __
 <img src="out/gaussianblur1.jpg" height=25% width=25%/>
 
-##### > gaussianblur45.jpg 
+__> gaussianblur45.jpg __
 <img src="out/gaussianblur45.jpg" height=25% width=25%/>
 
-
-## ApplyingWatermarkWithROI.kt
+## dip > ApplyingWatermarkWithROI.kt
+<a href="./src/main/kotlin/dip/ApplyingWatermarkWithROI.kt">ApplyingWatermarkWithROI.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -119,17 +120,17 @@ fun main(args: Array<String>) {
     imwrite("out/watermarkedROI.jpg", source)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-##### < dip 
+__< dip __
 <img src="data/dip/watermark.jpg" height=25% width=25%/>
 
-##### > watermarkedROI.jpg 
+__> watermarkedROI.jpg __
 <img src="out/watermarkedROI.jpg" height=25% width=25%/>
 
-
-## EnhanceImageSharpness.kt
+## dip > EnhanceImageSharpness.kt
+<a href="./src/main/kotlin/dip/EnhanceImageSharpness.kt">EnhanceImageSharpness.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -140,14 +141,14 @@ fun main(args: Array<String>) {
     imwrite("out/sharp.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-##### > sharp.jpg 
+__> sharp.jpg __
 <img src="out/sharp.jpg" height=25% width=25%/>
 
-
-## Sobel.kt
+## dip > Sobel.kt
+<a href="./src/main/kotlin/dip/Sobel.kt">Sobel.kt</a>
 ```java
 fun main(args: Array<String>) {
     init()
@@ -171,14 +172,14 @@ fun main(args: Array<String>) {
     imwrite("out/sobel.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-##### > sobel.jpg 
+__> sobel.jpg __
 <img src="out/sobel.jpg" height=25% width=25%/>
 
-
-## EnhanceImageBrightness.kt
+## dip > EnhanceImageBrightness.kt
+<a href="./src/main/kotlin/dip/EnhanceImageBrightness.kt">EnhanceImageBrightness.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -190,14 +191,14 @@ fun main(args: Array<String>) {
     imwrite("out/brightWithAlpha2Beta50.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-##### > brightWithAlpha2Beta50.jpg 
+__> brightWithAlpha2Beta50.jpg __
 <img src="out/brightWithAlpha2Beta50.jpg" height=25% width=25%/>
 
-
-## Prewitt.kt
+## dip > Prewitt.kt
+<a href="./src/main/kotlin/dip/Prewitt.kt">Prewitt.kt</a>
 ```java
 fun main(args: Array<String>) {
     init()
@@ -221,14 +222,14 @@ fun main(args: Array<String>) {
     imwrite("out/prewitt.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-##### > prewitt.jpg 
+__> prewitt.jpg __
 <img src="out/prewitt.jpg" height=25% width=25%/>
 
-
-## ZoomingEffect.kt
+## dip > ZoomingEffect.kt
+<a href="./src/main/kotlin/dip/ZoomingEffect.kt">ZoomingEffect.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -246,14 +247,14 @@ fun main(args: Array<String>) {
     imwrite("out/zoomed2.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-##### > zoomed2.jpg 
+__> zoomed2.jpg __
 <img src="out/zoomed2.jpg" height=25% width=25%/>
 
-
-## Kirsch.kt
+## dip > Kirsch.kt
+<a href="./src/main/kotlin/dip/Kirsch.kt">Kirsch.kt</a>
 ```java
 fun main(args: Array<String>) {
     init()
@@ -277,14 +278,14 @@ fun main(args: Array<String>) {
     imwrite("out/kirsch.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-##### > kirsch.jpg 
+__> kirsch.jpg __
 <img src="out/kirsch.jpg" height=25% width=25%/>
 
-
-## Pixelize.kt
+## dip > Pixelize.kt
+<a href="./src/main/kotlin/dip/Pixelize.kt">Pixelize.kt</a>
 ```java
 /**
  */
@@ -297,14 +298,14 @@ fun main(args: Array<String>) {
     imwrite("out/pixelized.jpg", target)
 }
 ```
-##### < bear.png 
+__< bear.png __
 <img src="data/bear.png" height=25% width=25%/>
 
-##### > pixelized.jpg 
+__> pixelized.jpg __
 <img src="out/pixelized.jpg" height=25% width=25%/>
 
-
-## ImageShapeConversions.kt
+## dip > ImageShapeConversions.kt
+<a href="./src/main/kotlin/dip/ImageShapeConversions.kt">ImageShapeConversions.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -323,8 +324,8 @@ fun main(args: Array<String>) {
     ImageIO.write(image1, "jpg", outout)
 }
 ```
-
-## BasicThresholding.kt
+## dip > BasicThresholding.kt
+<a href="./src/main/kotlin/dip/BasicThresholding.kt">BasicThresholding.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -340,23 +341,23 @@ fun main(args: Array<String>) {
     imwrite("out/ThreshBinaryInv.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-##### > ThreshZero.jpg 
+__> ThreshZero.jpg __
 <img src="out/ThreshZero.jpg" height=25% width=25%/>
 
-##### > ThreshZeroInv.jpg 
+__> ThreshZeroInv.jpg __
 <img src="out/ThreshZeroInv.jpg" height=25% width=25%/>
 
-##### > ThreshBinary.jpg 
+__> ThreshBinary.jpg __
 <img src="out/ThreshBinary.jpg" height=25% width=25%/>
 
-##### > ThreshBinaryInv.jpg 
+__> ThreshBinaryInv.jpg __
 <img src="out/ThreshBinaryInv.jpg" height=25% width=25%/>
 
-
-## EnhanceImageContrast.kt
+## dip > EnhanceImageContrast.kt
+<a href="./src/main/kotlin/dip/EnhanceImageContrast.kt">EnhanceImageContrast.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -366,14 +367,14 @@ fun main(args: Array<String>) {
     imwrite("out/contrast.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-##### > contrast.jpg 
+__> contrast.jpg __
 <img src="out/contrast.jpg" height=25% width=25%/>
 
-
-## ImagePyramid.kt
+## dip > ImagePyramid.kt
+<a href="./src/main/kotlin/dip/ImagePyramid.kt">ImagePyramid.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -387,20 +388,20 @@ fun main(args: Array<String>) {
     imwrite("out/pyrDown.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-##### < dip 
+__< dip __
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-##### > pyrUp.jpg 
+__> pyrUp.jpg __
 <img src="out/pyrUp.jpg" height=25% width=25%/>
 
-##### > pyrDown.jpg 
+__> pyrDown.jpg __
 <img src="out/pyrDown.jpg" height=25% width=25%/>
 
-
-## ErodingDilating.kt
+## dip > ErodingDilating.kt
+<a href="./src/main/kotlin/dip/ErodingDilating.kt">ErodingDilating.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -422,17 +423,17 @@ fun main(args: Array<String>) {
     imwrite("out/dilation.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-##### > erosion.jpg 
+__> erosion.jpg __
 <img src="out/erosion.jpg" height=25% width=25%/>
 
-##### > dilation.jpg 
+__> dilation.jpg __
 <img src="out/dilation.jpg" height=25% width=25%/>
 
-
-## AddingBorder.kt
+## dip > AddingBorder.kt
+<a href="./src/main/kotlin/dip/AddingBorder.kt">AddingBorder.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -450,20 +451,20 @@ fun main(args: Array<String>) {
     imwrite("out/borderReplicate.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-##### > borderWrap.jpg 
+__> borderWrap.jpg __
 <img src="out/borderWrap.jpg" height=25% width=25%/>
 
-##### > borderReflect.jpg 
+__> borderReflect.jpg __
 <img src="out/borderReflect.jpg" height=25% width=25%/>
 
-##### > borderReplicate.jpg 
+__> borderReplicate.jpg __
 <img src="out/borderReplicate.jpg" height=25% width=25%/>
 
-
-## WeightedAverage.kt
+## dip > WeightedAverage.kt
+<a href="./src/main/kotlin/dip/WeightedAverage.kt">WeightedAverage.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -488,14 +489,14 @@ fun main(args: Array<String>) {
     imwrite("out/weightedaveragefilter.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-##### > weightedaveragefilter.jpg 
+__> weightedaveragefilter.jpg __
 <img src="out/weightedaveragefilter.jpg" height=25% width=25%/>
 
-
-## Convolution.kt
+## dip > Convolution.kt
+<a href="./src/main/kotlin/dip/Convolution.kt">Convolution.kt</a>
 ```java
 fun main(args: Array<String>) {
     init()
@@ -519,14 +520,14 @@ fun main(args: Array<String>) {
     imwrite("out/understand.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-##### > understand.jpg 
+__> understand.jpg __
 <img src="out/understand.jpg" height=25% width=25%/>
 
-
-## Laplacian.kt
+## dip > Laplacian.kt
+<a href="./src/main/kotlin/dip/Laplacian.kt">Laplacian.kt</a>
 ```java
 fun main(args: Array<String>) {
     init()
@@ -550,14 +551,14 @@ fun main(args: Array<String>) {
     imwrite("out/laplacian.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-##### > laplacian.jpg 
+__> laplacian.jpg __
 <img src="out/laplacian.jpg" height=25% width=25%/>
 
-
-## ColorSpaceConversion.kt
+## dip > ColorSpaceConversion.kt
+<a href="./src/main/kotlin/dip/ColorSpaceConversion.kt">ColorSpaceConversion.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -567,14 +568,14 @@ fun main(args: Array<String>) {
     imwrite("out/hsv.jpg", mat1)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-##### > hsv.jpg 
+__> hsv.jpg __
 <img src="out/hsv.jpg" height=25% width=25%/>
 
-
-## Robinson.kt
+## dip > Robinson.kt
+<a href="./src/main/kotlin/dip/Robinson.kt">Robinson.kt</a>
 ```java
 fun main(args: Array<String>) {
     init()
@@ -598,14 +599,14 @@ fun main(args: Array<String>) {
     imwrite("out/robinson.jpg", destination)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/grayscale.jpg" height=25% width=25%/>
 
-##### > robinson.jpg 
+__> robinson.jpg __
 <img src="out/robinson.jpg" height=25% width=25%/>
 
-
-## ApplyingWatermark.kt
+## dip > ApplyingWatermark.kt
+<a href="./src/main/kotlin/dip/ApplyingWatermark.kt">ApplyingWatermark.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -617,14 +618,14 @@ fun main(args: Array<String>) {
     imwrite("out/watermarked.jpg", source)
 }
 ```
-##### < dip 
+__< dip __
 <img src="data/dip/digital_image_processing.jpg" height=25% width=25%/>
 
-##### > watermarked.jpg 
+__> watermarked.jpg __
 <img src="out/watermarked.jpg" height=25% width=25%/>
 
-
-## BilateralFilter.kt
+## tutorialpoint > BilateralFilter.kt
+<a href="./src/main/kotlin/tutorialpoint/BilateralFilter.kt">BilateralFilter.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -634,14 +635,14 @@ fun main(args: Array<String>) {
     imwrite("out/bilateral.jpg", dst)
 }
 ```
-##### < marcel2019.jpg 
+__< marcel2019.jpg __
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-##### > bilateral.jpg 
+__> bilateral.jpg __
 <img src="out/bilateral.jpg" height=25% width=25%/>
 
-
-## BoxFilter.kt
+## tutorialpoint > BoxFilter.kt
+<a href="./src/main/kotlin/tutorialpoint/BoxFilter.kt">BoxFilter.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -653,14 +654,14 @@ fun main(args: Array<String>) {
     imwrite("out/RboxFilter.jpg", dst)
 }
 ```
-##### < marcel2019.jpg 
+__< marcel2019.jpg __
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-##### > RboxFilter.jpg 
+__> RboxFilter.jpg __
 <img src="out/RboxFilter.jpg" height=25% width=25%/>
 
-
-## SQRBoxFilterTest.kt
+## tutorialpoint > SQRBoxFilterTest.kt
+<a href="./src/main/kotlin/tutorialpoint/SQRBoxFilterTest.kt">SQRBoxFilterTest.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -670,14 +671,14 @@ fun main(args: Array<String>) {
     imwrite("out/sqrBoxFilter.jpg", dst)
 }
 ```
-##### < marcel2019.jpg 
+__< marcel2019.jpg __
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-##### > sqrBoxFilter.jpg 
+__> sqrBoxFilter.jpg __
 <img src="out/sqrBoxFilter.jpg" height=25% width=25%/>
 
-
-## Filter2D.kt
+## tutorialpoint > Filter2D.kt
+<a href="./src/main/kotlin/tutorialpoint/Filter2D.kt">Filter2D.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -698,14 +699,14 @@ fun main(args: Array<String>) {
     imwrite("out/filter2d.jpg", dst)
 }
 ```
-##### < marcel2019.jpg 
+__< marcel2019.jpg __
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-##### > filter2d.jpg 
+__> filter2d.jpg __
 <img src="out/filter2d.jpg" height=25% width=25%/>
 
-
-## BlurTest.kt
+## tutorialpoint > BlurTest.kt
+<a href="./src/main/kotlin/tutorialpoint/BlurTest.kt">BlurTest.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -714,14 +715,14 @@ fun main(args: Array<String>) {
     imwrite("out/blur.jpg", dst)
 }
 ```
-##### < marcel.jpg 
+__< marcel.jpg __
 <img src="data/marcel.jpg" height=25% width=25%/>
 
-##### > blur.jpg 
+__> blur.jpg __
 <img src="out/blur.jpg" height=25% width=25%/>
 
-
-## GaussianTest.kt
+## tutorialpoint > GaussianTest.kt
+<a href="./src/main/kotlin/tutorialpoint/GaussianTest.kt">GaussianTest.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -731,14 +732,14 @@ fun main(args: Array<String>) {
     imwrite("out/blur.jpg", dst)
 }
 ```
-##### < marcel2019.jpg 
+__< marcel2019.jpg __
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-##### > blur.jpg 
+__> blur.jpg __
 <img src="out/blur.jpg" height=25% width=25%/>
 
-
-## MedianTest.kt
+## tutorialpoint > MedianTest.kt
+<a href="./src/main/kotlin/tutorialpoint/MedianTest.kt">MedianTest.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -748,14 +749,14 @@ fun main(args: Array<String>) {
     imwrite("out/blur.jpg", dst)
 }
 ```
-##### < marcel2019.jpg 
+__< marcel2019.jpg __
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-##### > blur.jpg 
+__> blur.jpg __
 <img src="out/blur.jpg" height=25% width=25%/>
 
-
-## OptimizingGrabcut.kt
+## stackoverflow > OptimizingGrabcut.kt
+<a href="./src/main/kotlin/stackoverflow/OptimizingGrabcut.kt">OptimizingGrabcut.kt</a>
 ```java
 fun main(args: Array<String>) {
     Origami.init()
@@ -777,14 +778,23 @@ fun extractFace(image: Mat, xOne: Int, xTwo: Int, yOne: Int, yTwo: Int): Mat {
     return foreground
 }
 ```
-##### < marcel2019.jpg 
+__< marcel2019.jpg __
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-##### > grabcut.jpg 
+__> grabcut.jpg __
 <img src="out/grabcut.jpg" height=25% width=25%/>
 
-
-## BodyTransfer.kt
+## me > hello.kt
+<a href="./src/main/kotlin/me/hello.kt">hello.kt</a>
+```java
+fun main(args: Array<String>) {
+    Origami.init()
+    val hello = eye(3, 3, CV_8UC1)
+    println(hello.dump())
+}
+```
+## me > BodyTransfer.kt
+<a href="./src/main/kotlin/me/BodyTransfer.kt">BodyTransfer.kt</a>
 ```java
 const val DEFAULT_CLASSIFIER =
 const val CLASSIFIER_PATH = "haarcascade.xml"
@@ -812,23 +822,14 @@ fun main(args: Array<String>) {
     imwrite("out/bodytransfer.jpg", mat)
 }
 ```
-##### < image.jpg 
+__< image.jpg __
 <img src="data/image.jpg" height=25% width=25%/>
 
-##### > bodytransfer.jpg 
+__> bodytransfer.jpg __
 <img src="out/bodytransfer.jpg" height=25% width=25%/>
 
-
-## hello.kt
-```java
-fun main(args: Array<String>) {
-    Origami.init()
-    val hello = eye(3, 3, CV_8UC1)
-    println(hello.dump())
-}
-```
-
-## InPainting.kt
+## geeksforgeeks > InPainting.kt
+<a href="./src/main/kotlin/geeksforgeeks/InPainting.kt">InPainting.kt</a>
 ```java
 /**
  */
@@ -841,25 +842,25 @@ fun main(args: Array<String>) {
     imwrite("out/cat_inpainted.png", dst)
 }
 ```
-##### < geeksforgeeks 
+__< geeksforgeeks __
 <img src="data/geeksforgeeks/cat_damaged.png" height=25% width=25%/>
 
-##### < geeksforgeeks 
+__< geeksforgeeks __
 <img src="data/geeksforgeeks/cat_mask.png" height=25% width=25%/>
 
-##### > cat_inpainted.png 
+__> cat_inpainted.png __
 <img src="out/cat_inpainted.png" height=25% width=25%/>
 
-
-## simple.kt
+## webcam > simple.kt
+<a href="./src/main/kotlin/webcam/simple.kt">simple.kt</a>
 ```java
 fun main(args: Array<String>) {
     init()
     Camera().run()
 }
 ```
-
-## simpleWithFilter.kt
+## webcam > simpleWithFilter.kt
+<a href="./src/main/kotlin/webcam/simpleWithFilter.kt">simpleWithFilter.kt</a>
 ```java
 fun main(args: Array<String>) {
     init()
@@ -872,4 +873,3 @@ fun main(args: Array<String>) {
     }).run()
 }
 ```
-
