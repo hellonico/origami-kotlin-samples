@@ -309,6 +309,7 @@ fun main(args: Array<String>) {
 <a href="./src/main/kotlin/dip/Pixelize.kt">Pixelize.kt</a>
 ```java
 /**
+ * https://stackoverflow.com/questions/55508615/how-to-pixelate-image-using-opencv-in-python
  */
 fun main(args: Array<String>) {
     init()
@@ -858,12 +859,16 @@ fun extractFace(image: Mat, xOne: Int, xTwo: Int, yOne: Int, yTwo: Int): Mat {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
+    // RGBカラー画像の画素値を取得
     var data = DoubleArray(3)
     data = im[100, 200]
     println("Blue：" + data[0])
     println("Green：" + data[1])
     println("Red：" + data[2])
+    // グレースケール画像の画素値を取得
     val gray = Mat()
+    cvtColor(im, gray, COLOR_RGB2GRAY) // 画像のグレースケール変換
     var data2 = DoubleArray(1)
     data2 = gray[100, 200]
     println("Gray：" + data2[0])
@@ -878,9 +883,11 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    // 入力画像の取得
     val im = imread("data/lupin3.jpeg")
     val roi = Rect(280, 60, 120, 100)
     val im2 = Mat(im, roi)
+    // 結果を保存
     imwrite("out/tanaka_trimming.png", im2)
 }
 ```
@@ -897,11 +904,18 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
     val hsv = Mat()
     val mask = Mat()
     val im2 = Mat()
+    cvtColor(im, hsv, COLOR_BGR2HSV) // HSV色空間に変換
+    inRange(hsv, Scalar(100.0, 10.0, 0.0), Scalar(140.0, 255.0, 255.0), mask) // 緑色領域のマスク作成
+    im.copyTo(im2, mask) // マスクを 用いて入力画像から緑色領域を抽出
+    imwrite("tanaka.jpg", im2) // 画像の出力
     bitwise_not(mask, mask)
     val im3 = Mat()
+    im.copyTo(im3, mask) // マスクを 用いて入力画像から緑色領域を抽出
+    imwrite("out/tanakahsv.jpg", im3) // 画像の出力
 }
 ```
 **< lupin3.jpeg**
@@ -921,6 +935,10 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
+    resize(im, im, Size(), 0.1, 0.1, INTER_NEAREST) // 画像サイズを1/10倍
+    resize(im, im, Size(), 10.0, 10.0, INTER_NEAREST) // 画像サイズを10倍
+    imwrite("out/tanaka_mosaic.jpg", im) // 画像の出力
 }
 ```
 **< lupin3.jpeg**
@@ -936,11 +954,17 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
+    val gamma = 1.0 // ガンマ定数
+    // ルックアップテーブルの計算
+    val lut = Mat(1, 256, CvType.CV_8UC1) //　ルックアップテーブル作成
     lut.setTo(Scalar(0.0))
     for (i in 0..255) {
         lut.put(0, i, Math.pow(1.0 * i / 255, 1 / gamma) * 255)
     }
+    // ガンマ変換
     Core.LUT(im, lut, im)
+    // 画像の出力
     imwrite("out/tanaka_gamma.jpg", im)
 }
 ```
@@ -957,8 +981,17 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
+    val mask = Mat() // マスク画像用
+    val bgModel = Mat() // 背景モデル用
+    val fgModel = Mat() // 前景モデル用
+    val rect = Rect(10, 10, 250, 290) // 大まかな前景と背景の境目(矩形)
     val source = Mat(1, 1, CvType.CV_8U, Scalar(3.0))
+    grabCut(im, mask, rect, bgModel, fgModel, 1, 0) // グラフカットで前景と背景を分離
     Core.compare(mask, source, mask, Core.CMP_EQ)
+    val fg = Mat(im.size(), CvType.CV_8UC1, Scalar(0.0, 0.0, 0.0)) // 前景画像用
+    im.copyTo(fg, mask) // 前景画像の作成
+    imwrite("out/tanaka_grabcut.jpg", fg) // 画像の出力
 }
 ```
 **< lupin3.jpeg**
@@ -974,7 +1007,9 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
     Photo.fastNlMeansDenoising(im, im)
+    imwrite("out/tanaka_denoising.jpg", im) // 画像の出力
 }
 ```
 **< lupin3.jpeg**
@@ -990,7 +1025,11 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
     val gray = Mat()
+    cvtColor(im, gray, COLOR_RGB2GRAY) // 画像のグレースケール変換
+    equalizeHist(gray, gray) // グレースケール画像のヒストグラムを平坦化
+    imwrite("out/tanaka_hist.jpg", gray) // 画像の出力
 }
 ```
 **< lupin3.jpeg**
@@ -1006,7 +1045,12 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
+    val tmp = imread("data/lupin_head.jpg") // テンプレート画像の取得
     val result = Mat()
+    matchTemplate(im, tmp, result, TM_CCOEFF_NORMED) //テンプレートマッチング
+    threshold(result, result, 0.8, 1.0, THRESH_TOZERO) // 検出結果から相関係数がしきい値以下の部分を削除
+    // テンプレート画像の部分を元画像に赤色の矩形で囲む
     for (i in 0 until result.rows()) {
         for (j in 0 until result.cols()) {
             if (result[i, j][0] > 0) {
@@ -1019,6 +1063,7 @@ fun main(args: Array<String>) {
             }
         }
     }
+    imwrite("out/tanaka_match.jpg", im) // 画像の出力
 }
 ```
 **< lupin3.jpeg**
@@ -1038,7 +1083,11 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
     val gray = Mat()
+    cvtColor(im, gray, COLOR_RGB2GRAY) // グレースケール変換
+    Canny(gray, gray, 400.0, 500.0, 5, true) // Cannyアルゴリズムで輪郭検出
+    imwrite("out/tanaka_canny.jpg", gray) // エッジ画像の出力
 }
 ```
 **< lupin3.jpeg**
@@ -1062,6 +1111,8 @@ fun main(args: Array<String>) {
 <a href="./src/main/kotlin/me/BodyTransfer.kt">BodyTransfer.kt</a>
 ```java
 const val DEFAULT_CLASSIFIER =
+    "https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_upperbody.xml"
+const val DEFAULT_IMAGE = "https://www.netclipart.com/pp/m/106-1066497_suit-man-png-man-in-suit-png.png"
 const val CLASSIFIER_PATH = "haarcascade.xml"
 val COLOR = Scalar(0.0, 100.0, 0.0)
 fun main(args: Array<String>) {
@@ -1099,6 +1150,7 @@ fun main(args: Array<String>) {
 <a href="./src/main/kotlin/geeksforgeeks/InPainting.kt">InPainting.kt</a>
 ```java
 /**
+ * https://www.geeksforgeeks.org/introduction-to-opencv/
  */
 fun main(args: Array<String>) {
     Origami.init()
@@ -1126,6 +1178,9 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
+    val n = 100 // 大きいほど階調数が減少
+    // 減色処理
     val sz = im.size()
     var i = 0
     while (i < sz.height) {
@@ -1140,6 +1195,7 @@ fun main(args: Array<String>) {
         }
         i++
     }
+    imwrite("out/tanaka_level.jpg", im) // 画像データをJPG形式で保存
 }
 ```
 **< lupin3.jpeg**
@@ -1155,8 +1211,10 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
     val dst = Mat()
     medianBlur(im, dst, 5)
+    imwrite("out/tanaka_median.jpg", dst) // 出力画像の保存
 }
 ```
 **< lupin3.jpeg**
@@ -1172,12 +1230,17 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
     val gray = Mat(im.rows(), im.cols(), CvType.CV_8SC1)
+    cvtColor(im, gray, COLOR_RGB2GRAY) // グレースケール変換
+    Canny(gray, gray, 80.0, 100.0) // 輪郭線検出
     val lines = Mat()
+    // 確率的ハフ変換で直線検出
     HoughLinesP(gray, lines, 1.0, Math.PI / 180, 50, 100.0, 50.0)
     var data: DoubleArray
     val pt1 = Point()
     val pt2 = Point()
+    // 検出した直線上を赤線で塗る
     for (i in 0 until lines.cols()) {
         data = lines[0, i]
         pt1.x = data[0]
@@ -1186,6 +1249,7 @@ fun main(args: Array<String>) {
         pt2.y = data[3]
         line(im, pt1, pt2, Scalar(0.0, 0.0, 200.0), 3)
     }
+    imwrite("out/tanaka_houghlinesp.jpg", im) // 出力画像の保存
 }
 ```
 **< lupin3.jpeg**
@@ -1219,8 +1283,10 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val img = imread("data/lupin3.jpeg") // 入力画像の取得
     val k = 2
     val clusters = cluster(img, k)[0]
+    imwrite("out/tanaka_cluster.png", clusters) // 画像をJPG形式で保存
 }
 fun cluster(cutout: Mat, k: Int): List<Mat> {
     val samples = cutout.reshape(1, cutout.cols() * cutout.rows())
@@ -1268,9 +1334,14 @@ private fun showClusters(cutout: Mat, labels: Mat, centers: Mat): List<Mat> {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
     val im2 = Mat()
     val im3 = Mat()
     val sz = im.size()
+    resize(im, im2, Size(sz.width * 2, sz.height * 2)) // 2倍拡大
+    resize(im, im3, Size(sz.width * 0.5, sz.height * 0.5)) // 1/2倍に縮小
+    imwrite("out/tanaka_resize2.jpg", im2) // 出力画像の保存
+    imwrite("out/tanaka_resize05.jpg", im3) // 出力画像の保存
 }
 ```
 **< lupin3.jpeg**
@@ -1290,9 +1361,14 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
     val gray = Mat(im.rows(), im.cols(), CvType.CV_8SC1)
+    cvtColor(im, gray, COLOR_RGB2GRAY) // グレースケール変換
+    Canny(gray, gray, 70.0, 110.0) // 輪郭線検出
     val lines = Mat()
+    // 古典的ハフ変換で直線検出
     HoughLines(gray, lines, 1.0, 2 * Math.PI / 180, 20)
+    // 検出した直線上を赤線で塗る
     for (i in 0 until lines.cols()) {
         val data = lines[0, i]
         val rho = data[0]
@@ -1305,6 +1381,7 @@ fun main(args: Array<String>) {
         val pt2 = Point(x0 - 10000 * -sinTheta, y0 - 10000 * cosTheta)
         line(im, pt1, pt2, Scalar(0.0, 0.0, 200.0), 3)
     }
+    imwrite("out/tanaka_houghlines.jpg", im) // 出力画像の保存
 }
 ```
 **< lupin3.jpeg**
@@ -1320,8 +1397,10 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
     val dst = Mat()
     blur(im, dst, Size(5.0, 5.0))
+    imwrite("out/tanaka_blur.jpg", dst) // 出力画像の保存
 }
 ```
 **< lupin3.jpeg**
@@ -1337,6 +1416,9 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
+    Core.bitwise_not(im, im) // 色反転(Not演算)
+    imwrite("out/tanaka_invert.jpg", im) // 出力画像の保存
 }
 ```
 **< lupin3.jpeg**
@@ -1352,10 +1434,13 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    // 入力画像の取得
     val im = imread("data/lupin3.jpeg")
+    // カスケード分類器でアニメ顔探索
     val faceDetector = CascadeClassifier("data/nagadomi/lbpcascade_animeface.xml")
     val faceDetections = MatOfRect()
     faceDetector.detectMultiScale(im, faceDetections)
+    // 見つかったアニメ顔を矩形で囲む
     for (rect in faceDetections.toArray()) {
         rectangle(
             im,
@@ -1365,6 +1450,7 @@ fun main(args: Array<String>) {
             5
         )
     }
+    // 結果を保存
     imwrite("out/anime_face.png", im)
 }
 ```
@@ -1381,10 +1467,15 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
     val gray = Mat(im.rows(), im.cols(), CvType.CV_8SC1)
+    cvtColor(im, gray, COLOR_RGB2GRAY) // グレースケール変換
+    //Imgproc.Canny(gray, gray, 80, 100);										// 輪郭線検出
     val circles = Mat()
+    // ハフ変換で円検出
     HoughCircles(gray, circles, CV_HOUGH_GRADIENT, 2.0, 10.0, 160.0, 50.0, 10, 20)
     val pt = Point()
+    // 検出した直線上を赤線で塗る
     for (i in 0 until circles.cols()) {
         val data = circles[0, i]
         pt.x = data[0]
@@ -1392,6 +1483,7 @@ fun main(args: Array<String>) {
         val rho = data[2]
         circle(im, pt, rho.toInt(), Scalar(0.0, 200.0, 0.0), 5)
     }
+    imwrite("out/tanaka_circles.jpg", im) // 出力画像の保存
 }
 ```
 **< lupin3.jpeg**
@@ -1407,11 +1499,16 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val im = imread("data/lupin3.jpeg") // 入力画像の取得
     val gray = Mat()
+    cvtColor(im, gray, COLOR_RGB2GRAY) // 画像のグレースケール変換
+    // ------ SIFTの処理 ここから ------
     val siftDetector = SIFT.create()
     val kp = MatOfKeyPoint()
     siftDetector.detect(gray, kp)
+    // -- Draw keypoints
     Features2d.drawKeypoints(im, kp, im)
+    imwrite("out/tanaka_sift.jpg", im) // 画像の出力
 }
 ```
 **< lupin3.jpeg**
@@ -1427,10 +1524,13 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    // 入力画像の取得
     val im = Imgcodecs.imread("data/image.jpg")
+    // カスケード分類器で顔探索
     val faceDetector = CascadeClassifier("data/haarcascades/haarcascade_frontalface_alt.xml")
     val faceDetections = MatOfRect()
     faceDetector.detectMultiScale(im, faceDetections)
+    // 見つかった顔を矩形で囲む
     for (rect in faceDetections.toArray()) {
         Imgproc.rectangle(
             im,
@@ -1440,6 +1540,7 @@ fun main(args: Array<String>) {
             5
         )
     }
+    // 結果を保存
     Imgcodecs.imwrite("tanaka.jpg", im)
 }
 ```
@@ -1474,7 +1575,9 @@ fun main(args: Array<String>) {
 ```java
 fun main(args: Array<String>) {
     Origami.init()
+    val gray = imread("data/lupin3.jpeg", 0) // 入力画像の取得
     Canny(gray, gray, 100.0, 200.0, 3, true)
+    imwrite("out/tanaka_canny.jpg", gray) // 画像データをJPG形式で保存
 }
 ```
 **< lupin3.jpeg**
