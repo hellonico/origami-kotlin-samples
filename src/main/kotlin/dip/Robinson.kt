@@ -1,10 +1,7 @@
 package dip
 
-import org.opencv.core.Core
 import org.opencv.core.CvType.CV_32F
 import org.opencv.core.Mat
-import org.opencv.highgui.HighGui.imshow
-import org.opencv.highgui.HighGui.waitKey
 import org.opencv.imgcodecs.Imgcodecs.*
 import org.opencv.imgproc.Imgproc.filter2D
 import origami.Origami.init
@@ -31,5 +28,5 @@ fun main(args: Array<String>) {
     }
 
     filter2D(source, destination, -1, kernel)
-    imwrite("robinson.jpg", destination)
+    imwrite("out/robinson.jpg", destination)
 }

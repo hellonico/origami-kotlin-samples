@@ -16,9 +16,9 @@ fun main(args: Array<String>) {
     val left = source.cols() / 20
     val right = source.cols() / 20
     copyMakeBorder(source, destination, top, bottom, left, right, BORDER_WRAP)
-    imwrite("borderWrap.jpg", destination)
+    imwrite("out/borderWrap.jpg", destination)
     copyMakeBorder(source, destination, top, bottom, left, right, BORDER_REFLECT)
-    imwrite("borderReflect.jpg", destination)
+    imwrite("out/borderReflect.jpg", destination)
     copyMakeBorder(source, destination, top, bottom, left, right, BORDER_REPLICATE)
-    imwrite("borderReplicate.jpg", destination)
+    imwrite("out/borderReplicate.jpg", destination)
 }

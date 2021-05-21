@@ -10,5 +10,5 @@ fun main(args: Array<String>) {
     val source = imread("data/dip/grayscale.jpg", IMREAD_GRAYSCALE)
     val destination = Mat(source.rows(), source.cols(), source.type())
     equalizeHist(source, destination)
-    imwrite("contrast.jpg", destination)
+    imwrite("out/contrast.jpg", destination)
 }

@@ -17,5 +17,5 @@ fun main(args: Array<String>) {
     val mask = imread("data/geeksforgeeks/cat_mask.png", 0)
     val dst = Mat()
     inpaint(img, mask, dst, 3.0, INPAINT_NS)
-    imwrite("cat_inpainted.png", dst)
+    imwrite("out/cat_inpainted.png", dst)
 }

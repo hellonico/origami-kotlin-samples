@@ -19,5 +19,5 @@ fun main(args: Array<String>) {
     resize(source, temp, Size(w, h), 1.0,1.0, INTER_LINEAR)
     resize(temp, target, source.size(), 1.0,1.0,INTER_NEAREST)
 
-    imwrite("pixelized.jpg", target)
+    imwrite("out/pixelized.jpg", target)
 }

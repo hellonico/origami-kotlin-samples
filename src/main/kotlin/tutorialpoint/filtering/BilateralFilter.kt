@@ -13,5 +13,5 @@ fun main(args: Array<String>) {
     val src = imread("data/marcel2019.jpg")
     val dst = Mat()
     bilateralFilter(src, dst, 15, 80.0, 80.0, Core.BORDER_DEFAULT)
-    imwrite("bilateral.jpg", dst)
+    imwrite("out/bilateral.jpg", dst)
 }

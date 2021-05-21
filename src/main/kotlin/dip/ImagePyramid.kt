@@ -12,9 +12,9 @@ fun main(args: Array<String>) {
     var source = imread("data/dip/digital_image_processing.jpg", IMREAD_COLOR)
     val destination1 = Mat(source.rows() * 2, source.cols() * 2, source.type())
     pyrUp(source, destination1, Size((source.cols() * 2).toDouble(), (source.rows() * 2).toDouble()))
-    imwrite("pyrUp.jpg", destination1)
+    imwrite("out/pyrUp.jpg", destination1)
     source = imread("data/dip/digital_image_processing.jpg", IMREAD_COLOR)
     val destination = Mat(source.rows() / 2, source.cols() / 2, source.type())
     pyrDown(source, destination, Size((source.cols() / 2).toDouble(), (source.rows() / 2).toDouble()))
-    imwrite("pyrDown.jpg", destination)
+    imwrite("out/pyrDown.jpg", destination)
 }

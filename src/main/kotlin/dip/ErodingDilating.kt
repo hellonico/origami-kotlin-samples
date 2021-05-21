@@ -23,5 +23,5 @@ fun main(args: Array<String>) {
         Size((2 * dilation_size + 1).toDouble(), (2 * dilation_size + 1).toDouble())
     )
     dilate(source, destination, element1)
-    imwrite("dilation.jpg", destination)
+    imwrite("out/dilation.jpg", destination)
 }

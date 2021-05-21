@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
     Origami.init()
     val mat = imread("data/marcel2019.jpg")
     val result = extractFace(mat, 300, 1200, 300, 900)
-    imwrite("grabcut.jpg", result)
+    imwrite("out/grabcut.jpg", result)
 }
 
 fun extractFace(image: Mat, xOne: Int, xTwo: Int, yOne: Int, yTwo: Int): Mat {

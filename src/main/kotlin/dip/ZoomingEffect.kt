@@ -19,5 +19,5 @@ fun main(args: Array<String>) {
         zoomingFactor.toDouble(),
         INTER_LINEAR
     )
-    imwrite("zoomed2.jpg", destination)
+    imwrite("out/zoomed2.jpg", destination)
 }

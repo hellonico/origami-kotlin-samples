@@ -29,5 +29,5 @@ fun main(args: Array<String>) {
         }
     }
     filter2D(source, destination, -1, kernel)
-    imwrite("weightedaveragefilter.jpg", destination)
+    imwrite("out/weightedaveragefilter.jpg", destination)
 }

@@ -12,5 +12,5 @@ fun main(args: Array<String>) {
     val src = imread("data/marcel2019.jpg")
     val dst = Mat()
     medianBlur(src, dst, 15)
-    imwrite("blur.jpg", dst)
+    imwrite("out/blur.jpg", dst)
 }

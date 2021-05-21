@@ -20,5 +20,5 @@ fun main(args: Array<String>) {
         source, "dip.hellonico.info", Point((source.rows() / 2).toDouble(), (source.cols() / 2).toDouble()),
         FONT_ITALIC, 1.0, Scalar(255.0)
     )
-    imwrite("watermarked.jpg", source)
+    imwrite("out/watermarked.jpg", source)
 }

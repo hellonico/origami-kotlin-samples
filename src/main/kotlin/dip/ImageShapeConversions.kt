@@ -1,17 +1,13 @@
 package dip
 
-import kotlin.Throws
-import java.io.IOException
-import kotlin.jvm.JvmStatic
+import org.opencv.core.Core.flip
+import org.opencv.core.CvType
+import org.opencv.core.Mat
 import origami.Origami
 import java.awt.image.BufferedImage
-import javax.imageio.ImageIO
 import java.awt.image.DataBufferByte
-import org.opencv.core.Mat
-import org.opencv.core.CvType
-import org.opencv.core.Core
-import org.opencv.core.Core.*
 import java.io.File
+import javax.imageio.ImageIO
 
 fun main(args: Array<String>) {
     Origami.init()

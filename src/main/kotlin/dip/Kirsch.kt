@@ -30,5 +30,5 @@ fun main(args: Array<String>) {
     }
 
     filter2D(source, destination, -1, kernel)
-    imwrite("kirsch.jpg", destination)
+    imwrite("out/kirsch.jpg", destination)
 }

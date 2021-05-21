@@ -13,5 +13,5 @@ fun main(args: Array<String>) {
     val src = imread("data/marcel2019.jpg")
     val dst = Mat()
     GaussianBlur(src, dst, Size(45.0, 45.0), 0.0)
-    imwrite("blur.jpg", dst)
+    imwrite("out/blur.jpg", dst)
 }

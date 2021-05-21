@@ -3,7 +3,9 @@ package dip
 import org.opencv.core.CvType
 import org.opencv.core.Mat
 import org.opencv.imgcodecs.Imgcodecs
+import org.opencv.imgcodecs.Imgcodecs.*
 import org.opencv.imgproc.Imgproc
+import org.opencv.imgproc.Imgproc.*
 import origami.Origami
 
 fun createKernelOfSize(kernelSize: Int): Mat {
@@ -22,12 +24,12 @@ fun createKernelOfSize(kernelSize: Int): Mat {
 
 fun main(args: Array<String>) {
     Origami.init()
-    val source = Imgcodecs.imread("data/dip/grayscale.jpg", Imgcodecs.IMREAD_GRAYSCALE)
+    val source = imread("data/dip/grayscale.jpg", IMREAD_GRAYSCALE)
     val destination = Mat(source.rows(), source.cols(), source.type())
     val kernel5 = createKernelOfSize(5)
-    Imgproc.filter2D(source, destination, -1, kernel5)
-    Imgcodecs.imwrite("boxfilterKernel5.jpg", destination)
+    filter2D(source, destination, -1, kernel5)
+    imwrite("out/boxfilterKernel5.jpg", destination)
     val kernel9 = createKernelOfSize(9)
-    Imgproc.filter2D(source, destination, -1, kernel9)
-    Imgcodecs.imwrite("boxfilterKernel9.jpg", destination)
+    filter2D(source, destination, -1, kernel9)
+    imwrite("out/boxfilterKernel9.jpg", destination)
 }
