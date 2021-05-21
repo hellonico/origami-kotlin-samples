@@ -911,7 +911,7 @@ fun main(args: Array<String>) {
     cvtColor(im, hsv, COLOR_BGR2HSV) // HSV色空間に変換
     inRange(hsv, Scalar(100.0, 10.0, 0.0), Scalar(140.0, 255.0, 255.0), mask) // 緑色領域のマスク作成
     im.copyTo(im2, mask) // マスクを 用いて入力画像から緑色領域を抽出
-    imwrite("tanaka.jpg", im2) // 画像の出力
+    imwrite("out/tanakahsvmask.jpg", im2) // 画像の出力
     bitwise_not(mask, mask)
     val im3 = Mat()
     im.copyTo(im3, mask) // マスクを 用いて入力画像から緑色領域を抽出
@@ -922,9 +922,9 @@ fun main(args: Array<String>) {
 
 <img src="data/lupin3.jpeg" height=25% width=25%/>
 
-**> tanaka.jpg**
+**> tanakahsvmask.jpg**
 
-<img src="tanaka.jpg" height=25% width=25%/>
+<img src="out/tanakahsvmask.jpg" height=25% width=25%/>
 
 **> tanakahsv.jpg**
 
@@ -1525,7 +1525,7 @@ fun main(args: Array<String>) {
 fun main(args: Array<String>) {
     Origami.init()
     // 入力画像の取得
-    val im = Imgcodecs.imread("data/image.jpg")
+    val im = Imgcodecs.imread("data/lupin3.jpeg")
     // カスケード分類器で顔探索
     val faceDetector = CascadeClassifier("data/haarcascades/haarcascade_frontalface_alt.xml")
     val faceDetections = MatOfRect()
@@ -1541,16 +1541,16 @@ fun main(args: Array<String>) {
         )
     }
     // 結果を保存
-    Imgcodecs.imwrite("tanaka.jpg", im)
+    Imgcodecs.imwrite("out/tanaka_face.jpg", im)
 }
 ```
-**< image.jpg**
+**< lupin3.jpeg**
 
-<img src="data/image.jpg" height=25% width=25%/>
+<img src="data/lupin3.jpeg" height=25% width=25%/>
 
-**> tanaka.jpg**
+**> tanaka_face.jpg**
 
-<img src="tanaka.jpg" height=25% width=25%/>
+<img src="out/tanaka_face.jpg" height=25% width=25%/>
 
 ## tanaka79 > Laplacian.kt
 <a href="./src/main/kotlin/tanaka79/Laplacian.kt">Laplacian.kt</a>
