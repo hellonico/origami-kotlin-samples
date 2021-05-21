@@ -9,5 +9,5 @@ fun main(args: Array<String>) {
     Origami.init()
     val im = imread("data/lupin3.jpeg") // 入力画像の取得
     Photo.fastNlMeansDenoising(im, im)
-    imwrite("out/tanaka_denoisingz.jpg", im) // 画像の出力
+    imwrite("out/tanaka_denoising.jpg", im) // 画像の出力
 }
