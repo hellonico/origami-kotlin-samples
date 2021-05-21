@@ -24,6 +24,7 @@ for i in `find . -name "*.kt"` ; do
     img=`echo $out| head -n1 | cut -d"\"" -f2`
     imgt=`echo $img | cut -d"/" -f2`
     echo "**< $imgt**"
+    echo ""
     echo "<img src=\"$img\" height=25% width=25%/>"
     echo ""
   done
@@ -34,6 +35,7 @@ for i in `find . -name "*.kt"` ; do
     img=`echo $out| head -n1 | cut -d"\"" -f2`
     imgt=`echo $img | cut -d"/" -f2`
     echo "**> $imgt**"
+    echo ""
     echo "<img src=\"$img\" height=25% width=25%/>"
     echo ""
   done
