@@ -15,5 +15,5 @@ fun main(args: Array<String>) {
     Origami.init()
     val (src,dst) = listOf(imread("data/marcel.jpg"), Mat())
     blur(src, dst, Size(100.0, 100.0), Point(20.0, 30.0), BORDER_REFLECT)
-    imwrite("out/blur.jpg", dst)
+    imwrite("out/blurtest.jpg", dst)
 }

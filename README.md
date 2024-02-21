@@ -773,16 +773,16 @@ fun main(args: Array<String>) {
     Origami.init()
     val (src,dst) = listOf(imread("data/marcel.jpg"), Mat())
     blur(src, dst, Size(100.0, 100.0), Point(20.0, 30.0), BORDER_REFLECT)
-    imwrite("out/blur.jpg", dst)
+    imwrite("out/blurtest.jpg", dst)
 }
 ```
 **< marcel.jpg**
 
 <img src="data/marcel.jpg" height=25% width=25%/>
 
-**> blur.jpg**
+**> blurtest.jpg**
 
-<img src="out/blur.jpg" height=25% width=25%/>
+<img src="out/blurtest.jpg" height=25% width=25%/>
 
 ## tutorialpoint > GaussianTest.kt
 <a href="./src/main/kotlin/tutorialpoint/GaussianTest.kt">GaussianTest.kt</a>
@@ -792,16 +792,16 @@ fun main(args: Array<String>) {
     val src = imread("data/marcel2019.jpg")
     val dst = Mat()
     GaussianBlur(src, dst, Size(45.0, 45.0), 0.0)
-    imwrite("out/blur.jpg", dst)
+    imwrite("out/gaussianmarcel.jpg", dst)
 }
 ```
 **< marcel2019.jpg**
 
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-**> blur.jpg**
+**> gaussianmarcel.jpg**
 
-<img src="out/blur.jpg" height=25% width=25%/>
+<img src="out/gaussianmarcel.jpg" height=25% width=25%/>
 
 ## tutorialpoint > MedianTest.kt
 <a href="./src/main/kotlin/tutorialpoint/MedianTest.kt">MedianTest.kt</a>
@@ -811,16 +811,16 @@ fun main(args: Array<String>) {
     val src = imread("data/marcel2019.jpg")
     val dst = Mat()
     medianBlur(src, dst, 15)
-    imwrite("out/blur.jpg", dst)
+    imwrite("out/medianmarcel.jpg", dst)
 }
 ```
 **< marcel2019.jpg**
 
 <img src="data/marcel2019.jpg" height=25% width=25%/>
 
-**> blur.jpg**
+**> medianmarcel.jpg**
 
-<img src="out/blur.jpg" height=25% width=25%/>
+<img src="out/medianmarcel.jpg" height=25% width=25%/>
 
 ## stackoverflow > OptimizingGrabcut.kt
 <a href="./src/main/kotlin/stackoverflow/OptimizingGrabcut.kt">OptimizingGrabcut.kt</a>
