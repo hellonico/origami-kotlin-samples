@@ -1,10 +1,9 @@
 package tanaka79
 
 import org.opencv.core.Mat
-import org.opencv.imgcodecs.Imgcodecs
-import org.opencv.imgcodecs.Imgcodecs.*
-import org.opencv.imgproc.Imgproc
-import org.opencv.imgproc.Imgproc.*
+import org.opencv.imgcodecs.Imgcodecs.imread
+import org.opencv.imgcodecs.Imgcodecs.imwrite
+import org.opencv.imgproc.Imgproc.medianBlur
 import origami.Origami
 
 
