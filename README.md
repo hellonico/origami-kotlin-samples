@@ -560,9 +560,9 @@ fun main(args: Array<String>) {
 
 <img src="data/lupin3.jpeg" height=25% width=25%/>
 
-**> tanaka_denoisingz.jpg**
+**> tanaka_denoising.jpg**
 
-<img src="out/tanaka_denoisingz.jpg" height=25% width=25%/>
+<img src="out/tanaka_denoising.jpg" height=25% width=25%/>
 
 ## tanaka79image > EqualizeHistgram.kt
 <a href="./src/main/kotlin/tanaka79image/EqualizeHistgram.kt">EqualizeHistgram.kt</a>
