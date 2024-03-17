@@ -12,7 +12,7 @@ import origami.Origami
 fun main(args: Array<String>) {
     Origami.init()
     // 入力画像の取得
-    val im = Imgcodecs.imread("data/image.jpg")
+    val im = Imgcodecs.imread("data/lupin3.jpeg")
     // カスケード分類器で顔探索
     val faceDetector = CascadeClassifier("data/haarcascades/haarcascade_frontalface_alt.xml")
     val faceDetections = MatOfRect()
@@ -28,5 +28,5 @@ fun main(args: Array<String>) {
         )
     }
     // 結果を保存
-    Imgcodecs.imwrite("tanaka.jpg", im)
+    Imgcodecs.imwrite("out/tanaka_face.jpg", im)
 }
