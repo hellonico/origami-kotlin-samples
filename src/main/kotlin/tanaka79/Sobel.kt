@@ -8,6 +8,6 @@ import origami.Origami
 fun main(args: Array<String>) {
     Origami.init()
     val gray = imread("data/lupin3.jpeg", 0)
-    Sobel(gray, gray, gray.depth(), 2, 2)
+    Sobel(gray, gray, gray.depth(), 1, 1)
     imwrite("out/tanaka_sobel.jpg", gray)
 }
