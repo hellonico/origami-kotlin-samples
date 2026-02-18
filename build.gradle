@@ -6,7 +6,7 @@ plugins {
 mainClassName = "HelloCV"
 
 dependencies {
-    implementation 'origami:origami:4.9.0-0'
+    implementation 'origami:origami:4.13.0-1'
     implementation "org.slf4j:slf4j-nop:1.6.2"
 }
 
