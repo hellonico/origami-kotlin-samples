@@ -33,3 +33,7 @@ sourceSets {
         java.srcDirs("src/main/kotlin")
     }
 }
+
+application {
+    mainClass.set(project.findProperty("mainClass") as String? ?: "HelloCV")
+}
