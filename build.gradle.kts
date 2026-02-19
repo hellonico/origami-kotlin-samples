@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    implementation("origami:origami:4.13.0-2-SNAPSHOT")
+    implementation("origami:origami:4.13.0-3-SNAPSHOT")
     implementation("org.clojure:clojure:1.11.3")
     implementation("org.slf4j:slf4j-nop:1.7.36")
 }
